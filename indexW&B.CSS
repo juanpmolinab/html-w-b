@@ -1,0 +1,70 @@
+*{
+    border-radius: 20px;
+    gap: 20px;
+    background-color: black;
+}
+
+
+main {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto ; 
+    background-color: black;
+    
+    color: aliceblue;
+}
+
+input{
+    width: 60px;
+    background-color: black;
+    color: aliceblue;
+}
+
+
+
+.mainHelicopters {
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+.mainFuel505 {
+    grid-area: 2 / 1 / 4 / 2;
+}
+
+.mainCG505{
+    grid-area: 2 / 2 / span 1  / 3;
+}
+
+.main505Position{
+    grid-area:  3 / 2 / span 1 / span 1;
+}
+
+.mainFuel429{
+    grid-area: 2 / 3 / 4 / 4;
+}
+
+.mainCG429{
+    grid-area: 2 / 4 / 3 / 5;
+}
+
+.main429Position{
+    grid-area:  3 / 4 / 4 / 5;
+}
+
+.save{
+    grid-area: 1 / 3 / span 1 / span 1;
+    
+    color:aliceblue;
+}
+
+button{
+color: aliceblue;
+background-color: green;
+}
+
+.cgDevelop{
+        
+    border-spacing: 20px 0;
+    border: 2px solid rgb(228, 206, 15);
+
+}
+            

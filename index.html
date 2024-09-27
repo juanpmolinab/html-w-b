@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <title>WEIGHT & BALANCE</title>
+</head>
+<body>
+    <main>
+    <header>
+        
+            <div class="up">
+                <h2 class="ind primero"><img src="img/LOGOKAEKBLANCO.png" alt="Logo de mi página" id="logo"></h2>
+                <h2 class="ind segundo">Pilot: <br> <input id="pilot" type="text"></h2>
+
+                <h2 class="ind tercero">Regist: <br> <input id="registration" type="text"><ul id="helicopterList" style="display: none; list-style-type: none;">
+                    <!-- Aquí se generarán dinámicamente las opciones -->
+                </ul></h2> 
+
+                <h2 class="ind cuarto"><p id="ige" >IGE</p></h2>
+                <h2 class="ind quinto"><p>OGE</p></h2>
+                <h2 class="ind sexto"><p>LOAD M.</p></h2>
+                <h2 class="ind septimo" id="configuration" onclick="window.location.href='W&B.html';"><p>conf</p></h2>
+                <h2 class="ind octavo"><img src="img/logo-chip-mong.png" alt="Logo empresa" id="logoE"></h2>
+                <h2 class="ind uno">From: <br> <input id="From" tipe="text"></h2>
+                <h2 class="ind dos">To: <br> <input id="To" type="text"></h2>
+                <h2 class="ind tres">NM: <br> <input id="NM" type="text"></h2>
+                <h2 class="ind cuatro">Alt: <br> <input id="Alt" type="text"></h2>
+                <h2 class="ind cinco">T°: <br> <input id="T°" type="text"°</h2>
+                <h2 class="ind seis">QNH: <br> <input id="QNH" type="text"></h2>
+            </div>
+        
+
+        <div class="donw">
+
+            <div class="hel-in-primero">
+                <div class="pax-weight-1">
+                    <div class="pax-value-1">
+                        <div class="pax-position-info">Seat (F1)</div>
+                        <div class="pax-position-name">Name: <input class="name-value" type="text"></div>
+                        <div class="pax-value-numb">[<input class="weight-value sf" type="text"> lbs.]</div> <!-- Corrección aquí -->
+                    </div>
+                    <div class="pax-value-scale"></div>
+                    <div class="pax-value-3" id="pax-value"><input type="range" id="escala-sf" min="0" max="250" value="0">
+                        <span id="valor-sf">0</span>
+                    </div>
+                </div>
+                <div class="pax-weight-2">
+                    <div class="pax-value-1">
+                        <div class="pax-position-info">Seat (RL)</div>
+                        <div class="pax-position-name">Name: <input class="name-value" type="text"></div>
+                        <div class="pax-value-numb">[<input class="weight-value srl" type="text"> lbs.]</div>
+                    </div>
+                    <div class="pax-value-scale"></div>
+                    <div class="pax-value-3" id="pax-value"><input type="range" id="escala-srl" min="0" max="250" value="0">
+                        <span id="valor-srl">0</span>
+                    </div>
+                </div>
+                <div class="pax-weight-3">
+                    <div class="pax-value-1">
+                        <div class="pax-position-info">Seat (CC)</div>
+                        <div class="pax-position-name">Name: <input class="name-value" type="text"></div>
+                        <div class="pax-value-numb">[<input class="weight-value src" type="text"> lbs.]</div>
+                    </div>
+                    <div class="pax-value-scale"></div>
+                    <div class="pax-value-3" id="pax-value"><input type="range" id="escala-src" min="0" max="250" value="0">
+                        <span id="valor-src">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hel-in-segundo">
+                <div class="hel-sillas-delantera">
+                    <div class="forward-seat fo">F1</div>
+                    <div class="forward-seat p">P</div>
+                </div>
+                <div class="hel-sillas-tracera">
+                    <div class="rear-seat b1">RL</div>
+                    <div class="rear-seat b2">RC</div>
+                    <div class="rear-seat b3">RR</div>
+                </div>
+                <div class="hel-sillas-cargo">
+                    <div class="cargo-b1">CARGO</div>
+                </div>
+            </div>
+
+            <div class="hel-in-tercero">
+                <div class="pax-weight-4">
+                    <div class="pax-value-1">
+                        <div class="pax-position-info">Pilot Seat</div>
+                        <div class="pax-position-name">Name: <input class="name-value" id="pilot1" type="text"></div>
+                        <div class="pax-value-numb">[<input class="weight-value ps" type="text"> lbs.]</div>
+                    </div>
+                    <div class="pax-value-scale"></div>
+                    <div class="pax-value-3" id="pax-value"><input type="range" id="escala-ps" min="0" max="250" value="0">
+                        <span id="valor-ps">0</span>
+                    </div>
+                </div>
+                <div class="pax-weight-5">
+                    <div class="pax-value-1">
+                        <div class="pax-position-info">Seat Rear R</div>
+                        <div class="pax-position-name">Name: <input class="name-value" type="text"></div>
+                        <div class="pax-value-numb">[<input class="weight-value srr" type="text"> lbs.]</div>
+                    </div>
+                    <div class="pax-value-scale"></div>
+                    <div class="pax-value-3" id="pax-value"><input type="range" id="escala-srr" min="0" max="250" value="0">
+                        <span id="valor-srr">0</span>
+                    </div>
+                </div>
+                <div class="pax-weight-6">
+                    <div class="pax-value-1">
+                        <div class="pax-position-info">GARGO</div>
+                        <div class="pax-position-name"></div>
+                        <div class="pax-value-numb">[<input class="weight-value g" type="text"> lbs.]</div>
+                    </div>
+                    <div class="pax-value-scale"></div>
+                    <div class="pax-value-3" id="pax-value"><input type="range" id="escala-g" min="0" max="250" value="0">
+                        <span id="valor-g">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="graf-a">
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <div class="totales">
+                <table class="tableTotal">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class="takeoffColor">Takeoff</th>
+                            <th class="landingColor">Landing</th>
+                            <th class="zeroColor">Zero Fuel</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mass</td>
+                            <td id="takeoffw">Fila 1, Col 2</td>
+                            <td id="landingw">Fila 1, Col 3</td>
+                            <td id="zerow">Fila 1, Col 4</td>
+                        </tr>
+                        <tr>
+                            <td>CG</td>
+                            <td id="takeoffArm">Fila 2, Col 2</td>
+                            <td id="landingArm">Fila 2, Col 3</td>
+                            <td id="zeroArm">Fila 2, Col 4</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="heli-foto"></div>
+
+            <div class="combustible">
+                <div class="usableFuel">
+                    <div class="fuel-value-1">[<input class="fuel-value fuel" type="text">] lbs. [<input class="precentege-value-fuel" type="text" id="percentageFuel">] % Usable Fuel</div>
+                    <div class="pax-value-scale"></div>
+                    <div class="fuel-value-3" id="fuel-value"><input type="range" id="escala-fuel" min="0" max="580" value="0">
+                        <span id="valor-fuel">0</span>
+                    </div>
+                </div>
+                <div class="landFuel">
+                    <div class="fuelLand-value-1">[<input class="fuelLand-value fuelLand" type="text">] lbs.[<input class="fuelLand-value fuelLand" type="text" id="percentageFuelLand">] %. Landing Fuel</div>
+                    <div class="pax-value-scale"></div>
+                    <div class="fuelLand-value-3" id="fuelLand-value"><input type="range" id="escala-fuelLand" min="0" max="580" value="0">
+                        <span id="valor-fuelLand">0</span>
+                    </div>
+                </div>
+                <div class="stank">
+                    <div class="stank1" id="stank1"></div>
+                    <div class="stank2" id="stank2"></div>
+                    <div class="scaleH"></div>
+                </div>
+                <div class="totalFuelEndurance">Endurance [<input class="endurance" type="text" id="endurance">]</div>
+                <div class="consumptionM">Consuption [ <input id="consumption" class="consumption" type="text" value="210" >] lbs/hrs</div>
+                <div class="reserveM">Reserve Time [<input class="reserve" type="text" id="reserve">]</div>
+            </div>
+        </div>
+    </header>
+    </main>
+    <script src="w&b.js"></script>
+</body>
+</html>

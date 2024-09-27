@@ -1,0 +1,579 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    gap: 2px;
+    font-size: 0,7rem; /* Tamaño por defecto */
+    background-color:black;
+    color: aliceblue;
+}   
+
+
+p {
+        margin: 15px;
+  }
+  
+ 
+
+
+input{ 
+    border: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size:large;
+    width: 80%;
+    min-width: 50px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5px;
+    margin-top: 0px;
+}
+
+.up{
+    display: grid;
+    grid-column: repeat(8, 1fr);
+    grid-row: repeat(2, 75px);
+    border: solid 1px aliceblue;
+    row-gap: 2px;
+    margin: 0px;
+    text-transform: uppercase;
+    justify-self: center;
+    border-radius: 10px;
+}
+
+.ind{
+    text-align: left;
+    border-radius:10px;
+}
+
+            #logo{
+                width: 120px;
+                height: 120px;
+                margin: 0%; 
+                text-align: center;
+                border-radius: 10px;
+            }
+            .primero{
+                flex: 1;
+                margin: 0%; 
+                grid-area: 1/1/3/2;
+                text-align: center;
+                
+            }
+            .segundo{
+                margin: 0%; 
+                grid-area: 1/2/2/3;
+                border: solid 2px aliceblue;
+                flex: 1;
+                
+                
+                
+            }
+            .tercero{
+                grid-area: 1/3/2/4;
+                border: solid 2px  aliceblue;
+                margin: 0%;
+                flex: 1;
+            }
+            .cuarto{
+                grid-area: 1/4/2/5;
+                border: solid 2px  aliceblue;
+                margin: 0%; 
+                flex: 1;
+                text-align: center;
+                justify-content: center;
+                
+            }
+            .quinto{
+                grid-area: 1/5/2/6;
+                border: solid 2px  aliceblue;
+                margin: 0%; 
+                flex: 1;
+                text-align: center;
+            }
+            .sexto{
+                grid-area: 1/6/2/7;
+                border: solid 2px  aliceblue;
+                margin: 0%; 
+                flex: 1;
+                text-align: center;
+            }
+            .septimo{
+                grid-area: 1/7/2/8;
+                border: solid 2px  aliceblue;
+                margin: 0%; 
+                flex: 1;
+                text-align: center;
+            }
+            .octavo{
+                grid-area: 1/8/3/9;
+               margin: 0%; 
+                flex: 1;
+                text-align: center;
+            }
+            #logoE{
+                margin: 0%; 
+                width: 120px;
+                height: 120px;
+                flex: 1;
+                border-radius: 10px;
+            }
+            .uno{
+                grid-area: 2/2/3/3;
+                border: solid 2px  aliceblue;
+                margin: 0%; 
+                flex: 1;
+            }
+            .dos{
+                grid-area: 2/3/3/4;
+                border: solid 2px  aliceblue;
+                margin: 0%; 
+                flex: 1;
+            }
+            .tres{
+                grid-area: 2/4/3/5;
+                border: solid 2px  aliceblue;
+                margin: 0%; 
+                flex: 1;
+            }
+            .cuatro{
+                grid-area: 2/5/3/6;
+                border: solid 2px  aliceblue;
+                margin: 0%; 
+                flex: 1;
+            }
+            .cinco{
+                grid-area: 2/6/3/7;
+                border: solid 2px  aliceblue;
+                margin: 0%; 
+                flex: 1;
+            }
+            .seis{
+                grid-area: 2/7/3/8;
+                border: solid 2px  aliceblue;
+                margin: 0%;
+                flex: 1;
+}
+.donw {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr); 
+    grid-template-rows: repeat(8, 75px); 
+    border: solid,1px, aliceblue;
+    gap: 2px;
+    margin: 2px;
+}
+                    .hel-in-primero {
+                        grid-area: 1 / 1 / span 6 / span 2;
+                        display: grid;
+                        grid-template-columns: 1fr; 
+                        grid-template-rows: repeat(6, 75px); 
+                        gap: 2px;
+                        
+                    }
+                                        .pax-weight-1{
+                                            grid-area: 1 / 1 / span 2 / 2;
+                                            display: grid;
+                                            grid-template-columns: 1fr; 
+                                            grid-template-rows: repeat(3, 1fr);
+                                        }
+                                                            .pax-value-1{
+                                                                grid-area: 1 / 1 / 2 / 2;
+                                                                display: grid;
+                                                                grid-template-columns:repeat(2, 1fr); 
+                                                                grid-template-rows: repeat(2, 1fr);
+                                                                margin: 0px;
+                                                                justify-content: center; 
+                                                                align-items: center;
+                                                            }
+                                                                        .pax-position-info{
+                                                                            grid-area: 1 / 1 / 2 / 2;
+                                                                            margin: 0%;
+                                                                        }
+                                                                        .pax-position-name{
+                                                                            grid-area: 2 / 1 / 3 / 3;
+                                                                            display: flex;
+                                                                            align-items: center; /* Alinea verticalmente el input con el texto */
+                                                                            gap: 8px; /* Espacio entre el texto y el input */
+                                                                        }
+                                                                        
+                                                                                .name-value{
+                                                                                    border: none;
+                                                                                    text-align: center;
+                                                                                    text-transform: uppercase;
+                                                                                    flex: 1; /* El input ocupará el espacio disponible */
+                                                                                    min-width: 50px; /* Ancho mínimo para evitar que se haga demasiado pequeño */
+                                                                                    margin: 0;
+                                                                                }
+                                                                        .pax-value-numb{
+                                                                            grid-area: 1 / 2 / 2 / 3;
+                                                                            text-align: center;
+                                                                        }
+                                                                                .weight-value {
+                                                                                    width: 30px;
+                                                                                    border: none;
+                                                                                    font-weight: bold;
+                                                                                    text-align: center;
+                                                                                    margin: 0;
+                                                                                }
+                                                            .pax-value-scale{
+                                                                grid-area: 2 / 1 / 3 / 2;
+                                                                background-image: url('img/scalesfBlanco.png');
+                                                                background-size: 90%; 
+                                                                background-repeat: no-repeat;
+                                                                background-position: center;
+                                                                margin: 0% 0% 0% 0%;
+                                                            }
+                                                            .pax-value-3{
+                                                                grid-area: 3 / 1 / 4 / 2;
+                                                                display: flex;
+                                                                padding-bottom: 50px;
+                                                                width: 100%;
+                                                                
+                                                            }
+                                                                                            #escala-sf, #escala-srl, #escala-src, #escala-ps, #escala-srr, #escala-g{
+                                                                                                align-self: center;
+                                                                                                width: 90%;
+                                                                                                margin: 0% 0% 0% 5%;
+                                                                                            }
+                                                                                            #valor-sf, #valor-srl, #valor-src, #valor-ps, #valor-srr, #valor-g{
+                                                                                                display: none;
+                                                                                                top: 0;
+                                                                                            }
+                                        .pax-weight-2{
+                                                        grid-area: 3 / 1 / span 2 / 2;
+                                                        display: grid;
+                                                        grid-template-columns: 1fr; 
+                                                        grid-template-rows: repeat(3, 1fr);
+                                        }
+                                        .pax-weight-3{
+                                                        grid-area: 5 / 1 / span 2 / 2;
+                                                        display: grid;
+                                                        grid-template-columns: 1fr; 
+                                                        grid-template-rows: repeat(3, 1fr);
+                                        }
+                    .hel-in-segundo {
+                        grid-area: 1 / 3 / span 6 / span 2;
+                        /* border: 2px solid black; */
+                        background-image: url('img/silueta-505-sfBlanco.png');
+                        background-size: contain; 
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        display: grid;
+                        grid-template-columns: 1fr; 
+                        grid-template-rows: repeat(12, 37.5px);
+                    }
+                                        .hel-sillas-delantera{
+                                            grid-area: 4 / 1 / span 2 / 2;
+                                            /* border: 2px solid black; */
+                                            display: flex;
+                                            justify-content: center; 
+                                            align-items: center;
+                                            gap: 15px;
+                                            background-color:transparent;
+                                            
+                                        }
+                                        .forward-seat{
+                                            
+                                            background-image: url('img/silla.png');
+                                            background-size: contain; 
+                                            background-repeat: no-repeat;
+                                            background-position: center;                                            
+                                            width: 40px;
+                                            height: 50px;
+                                            display: flex;
+                                            justify-content: center; 
+                                            align-items: center;
+                                        }
+                                        .hel-sillas-tracera{
+                                            grid-area: 6 / 1 / span 2 / 2;
+                                            /* border: 2px solid black; */
+                                            display: flex;
+                                            justify-content: center; 
+                                            align-items: center;
+                                            gap: 1px;
+                                            background-color:transparent;
+                                        }
+                                        .rear-seat{
+                                            background-image: url('img/silla.png');
+                                            background-size: contain; 
+                                            background-repeat: no-repeat;
+                                            background-position: center;
+                                            width: 40px;
+                                            height: 50px;
+                                            display: flex;
+                                            justify-content: center; 
+                                            align-items: center;
+                                        }
+                                        .hel-sillas-cargo{
+                                            grid-area: 8 / 1 / span 2 / 2;
+                                            /* border: 2px solid black; */
+                                            display: flex;
+                                            justify-content: center; 
+                                            align-items: center;
+                                            width: 100%;
+                                            background-color:transparent;
+                                        }
+                                        .cargo-b1{
+                                            background-image: url('img/cargo.png');
+                                            background-size: contain; 
+                                            background-repeat: no-repeat;
+                                            background-position: center;
+                                            width: 50%;
+                                            height: 40%;
+                                            display: flex;
+                                            justify-content: center; 
+                                            align-items: center;
+
+                                            background-color:transparent;
+                                        }
+                    .hel-in-tercero {
+                        grid-area: 1 / 5 / span 6 / span 2;
+                        display: grid;
+                        grid-template-columns: 1fr; 
+                        grid-template-rows: repeat(6, 75px);
+                        
+                    }
+                                        .pax-weight-4{
+                                            grid-area: 1 / 1 / span 2 / 2;
+                                            display: grid;
+                                            grid-template-columns: 1fr; 
+                                            grid-template-rows: repeat(3, 1fr);
+                                        }
+                                        .pax-weight-5{
+                                            grid-area: 3 / 1 / span 2 / 2;
+                                            display: grid;
+                                            grid-template-columns: 1fr; 
+                                            grid-template-rows: repeat(3, 1fr);
+                                            
+                                        }
+                                        .pax-weight-6{
+                                            grid-area: 5 / 1 / span 2 / 2;
+                                            display: grid;
+                                            grid-template-columns: 1fr; 
+                                            grid-template-rows: repeat(3, 1fr);
+                                            
+                                        }
+.graf-a {
+    grid-area: 1 / 7 / span 5 / span 3;
+    align-items: center;
+    text-align: center;
+    border: 2px solid  aliceblue;
+    border-radius: 10px;
+/*    background-image: url('img/grafico.jpg');
+    background-size:100% 100%;
+    background-position: center; 
+    background-repeat: no-repeat;
+  */  
+}
+
+.totales{
+    grid-area: 6 / 7 / span 1 / span 3;
+    align-items: center;
+    text-align: center;
+    border: 2px solid  aliceblue;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    border-radius: 10px;
+}   
+            .tableTotal{
+                border-collapse: separate;
+                border-spacing:100%;
+                flex:auto;
+
+            }
+
+            th, td {
+                
+                padding: 1px;
+                text-align: center;
+                height: 10px;
+                font-size: smaller;
+                }
+
+                    .takeoffColor{
+                        color: orange;
+                    }
+
+                    .landingColor{
+                        color: green;
+                    }
+
+                    .zeroColor{
+                        color: blue;
+                    }
+
+                    .row-height {
+                        height: 10px;
+                    }
+
+                    .column-heigt{
+                        height: 10px;
+                    }
+.heli-foto{
+    grid-area: 7/ 7 / span 2 / span 3;
+    align-items: center;
+    text-align: center;
+    border: 2px solid  aliceblue;   
+    background-image: url('img/505.png');
+    background-repeat: no-repeat; 
+    background-size: contain; 
+    background-position: center;
+    border-radius: 10px;
+}
+.combustible{
+    grid-area: 7 / 1 / span 2 / span 6;
+    border: 2px solid  aliceblue;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); 
+    grid-template-rows: repeat(6, 1fr);
+    border-radius: 10px;
+    padding: 1%;
+    
+}
+                .usableFuel{
+                    grid-area: 1 / 1 / span 3 / span 3;
+                    display: grid;
+                    grid-template-columns: 1fr; 
+                    grid-template-rows: repeat(3, 1fr);
+                    
+                }
+                                .fuel-value-1{
+                                    justify-content: center; 
+                                    align-items: center;
+                                }
+                                                .fuel-value{
+                                                                border: none;
+                                                                text-align: center;
+                                                                text-transform: uppercase;
+                                                                width: 50px;
+                                                                margin: 0;
+                                                }
+                                                .precentege-value-fuel{
+                                                                border: none;
+                                                                text-align: center;
+                                                                text-transform: uppercase;
+                                                                width: 40px;
+                                                                margin: 0;
+                                                }
+                                .fuel-value-3{
+                                    padding-bottom: 15px;
+                                    width: 100%;
+                                              }
+                                                        #escala-fuel, #escala-fuelLand{
+                                                            align-self: center;
+                                                            width: 90%;
+                                                            margin: 0% 0% 0% 5%;
+                                                            
+                                                        }
+                                                        #valor-fuel, #valor-fuelLand{
+                                                            display: none;
+                                                            top: 0;
+                                                        }
+                .landFuel{
+                    grid-area: 4 / 1 / span 3 / span 3;
+                    display: grid;
+                    grid-template-columns: 1fr; 
+                    grid-template-rows: repeat(3, 1fr);
+                }
+                                .fuelLand-value-1{
+                                    justify-content: center; 
+                                    align-items: center;
+                                    
+                                }
+                                            .fuelLand-value{
+                                                    border: none;
+                                                    text-align:center;
+                                                    text-transform: uppercase;
+                                                    width: 50px;
+                                                    margin: 0;
+                                             }
+                                .fuelLand-value-3{
+                                    padding-bottom: 15px;
+                                    width: 100%;
+                                }
+                .stank{
+                    grid-area: 1 / 4 / span 6 / span 1;
+                    
+                    position: relative;
+                }
+                    
+                    .stank1{
+                        
+                        background-color:blue;
+                        position: absolute;
+                        bottom: 10%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        height: 0%;
+                        width: 40%;
+                        }        
+                    .stank2{
+                        
+                        background-color:lightgray;
+                        position: absolute;
+                        bottom: 10%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        height: 10%;
+                        width: 40%;
+                        }
+                    .scaleH{
+                        background-image: url('img/scaleHBlanco.png');
+                        background-size:100% 100%;
+                        background-position: center; 
+                        background-repeat: no-repeat;
+                        position: absolute;
+                        bottom: 10%;
+                        right: 10%;
+                        height: 70%;
+                        width: 10px;
+                        }     
+                    
+                .totalFuelEndurance{
+                    grid-area: 1 / 5 / span 2 / span 3;
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    justify-content: right;
+                }    
+                            .endurance{
+                                border: none;
+                                width: 70px;
+                                margin: 0;
+                            }
+
+                .consumptionM{
+                    grid-area: 3 / 5 / span 2 / span 3;
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    justify-content: right;
+                }
+                        .consumption{
+                            border: none;
+                            width: 5%;
+                            margin: 0;
+                        }
+
+                .reserveM{
+                    grid-area: 5 / 5 / span 2 / span 3;
+                    text-align: right;
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    justify-content: right;
+                }
+
+                        .reserve{
+                            border: none;
+                            width: 70px;
+                            margin: 0;
+                        }
+
+.cgDevelop{
+        
+        border-spacing: 60px 0;
+        border: 2px solid black;
+
+    }
+                
