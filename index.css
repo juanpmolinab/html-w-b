@@ -20,13 +20,16 @@ input{
     font-weight: bold;
     text-transform: uppercase;
     font-size:large;
-    width: 80%;
+    width: 70%;
     min-width: 50px;
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 5px;
     margin-top: 0px;
 }
+
+
+
 
 .up{
     display: grid;
@@ -165,7 +168,7 @@ input{
                         grid-area: 1 / 1 / span 6 / span 2;
                         display: grid;
                         grid-template-columns: 1fr; 
-                        grid-template-rows: repeat(6, 75px); 
+                        grid-template-rows: repeat(6, 1fr); 
                         gap: 2px;
                         
                     }
@@ -259,7 +262,7 @@ input{
                         background-position: center;
                         display: grid;
                         grid-template-columns: 1fr; 
-                        grid-template-rows: repeat(12, 37.5px);
+                        grid-template-rows: repeat(12, 1fr);
                     }
                                         .hel-sillas-delantera{
                                             grid-area: 4 / 1 / span 2 / 2;
@@ -329,7 +332,7 @@ input{
                         grid-area: 1 / 5 / span 6 / span 2;
                         display: grid;
                         grid-template-columns: 1fr; 
-                        grid-template-rows: repeat(6, 75px);
+                        grid-template-rows: repeat(6, 1fr);
                         
                     }
                                         .pax-weight-4{
@@ -358,11 +361,6 @@ input{
     text-align: center;
     border: 2px solid  aliceblue;
     border-radius: 10px;
-/*    background-image: url('img/grafico.jpg');
-    background-size:100% 100%;
-    background-position: center; 
-    background-repeat: no-repeat;
-  */  
 }
 
 .totales{
@@ -571,11 +569,13 @@ input{
                         }
 
 .cgDevelop{
-        
         border-spacing: 60px 0;
         border: 2px solid black;
+}
 
-    }
+
+
+/* Diseño para pantallas de celular (max-width: 768px) */
 @media only screen and (max-width: 868px) {
     
 
@@ -705,7 +705,4 @@ input{
 
                    
 }
-
     
-
-                
