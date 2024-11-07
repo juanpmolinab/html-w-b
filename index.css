@@ -3,7 +3,7 @@
     font-weight: bold;
     gap: 2px;
     font-size: 0,7rem; /* Tamaño por defecto */
-    background-color:black;
+    background-color: black;
     color: aliceblue;
 }   
 
@@ -75,6 +75,20 @@ input{
                 margin: 0%;
                 flex: 1;
             }
+
+            .optionsHelicopter{ 
+                border: none;
+                font-weight: bold;
+                text-transform: uppercase;
+                font-size:large;
+                width: 70%;
+                min-width: 50px;
+                margin-left: 10%;
+                margin-right: 10%;
+                margin-bottom: 5px;
+                margin-top: 0px;
+            }
+            
             .cuarto{
                 grid-area: 1/4/2/5;
                 border: solid 2px  aliceblue;
@@ -237,7 +251,7 @@ input{
                                                                                                 margin: 0% 0% 0% 5%;
                                                                                             }
                                                                                             #valor-sf, #valor-srl, #valor-src, #valor-ps, #valor-srr, #valor-g{
-                                                                                                display: none;
+                                                                                                
                                                                                                 top: 0;
                                                                                             }
                                         .pax-weight-2{
@@ -287,7 +301,6 @@ input{
                                         }
                                         .hel-sillas-tracera{
                                             grid-area: 6 / 1 / span 2 / 2;
-                                            /* border: 2px solid black; */
                                             display: flex;
                                             justify-content: center; 
                                             align-items: center;
@@ -444,6 +457,7 @@ input{
                                                                 text-transform: uppercase;
                                                                 width: 50px;
                                                                 margin: 0;
+                                                                display: flex;
                                                 }
                                                 .precentege-value-fuel{
                                                                 border: none;
@@ -451,10 +465,12 @@ input{
                                                                 text-transform: uppercase;
                                                                 width: 40px;
                                                                 margin: 0;
+                                                                
                                                 }
                                 .fuel-value-3{
                                     padding-bottom: 15px;
                                     width: 100%;
+                                    display: flex;
                                               }
                                                         #escala-fuel, #escala-fuelLand{
                                                             align-self: center;
@@ -463,7 +479,7 @@ input{
                                                             
                                                         }
                                                         #valor-fuel, #valor-fuelLand{
-                                                            display: none;
+                                                            
                                                             top: 0;
                                                         }
                 .landFuel{
@@ -483,10 +499,14 @@ input{
                                                     text-transform: uppercase;
                                                     width: 50px;
                                                     margin: 0;
+                                                    
                                              }
+
+                                             
                                 .fuelLand-value-3{
                                     padding-bottom: 15px;
                                     width: 100%;
+                                    display: flex;
                                 }
                 .stank{
                     grid-area: 1 / 4 / span 6 / span 1;
@@ -506,7 +526,8 @@ input{
                         }        
                     .stank2{
                         
-                        background-color:lightgray;
+                        background-color: rgba(211, 211, 211, 0.6);
+
                         position: absolute;
                         bottom: 10%;
                         left: 50%;
@@ -628,7 +649,7 @@ input{
     .donw {
         display: grid;
         grid-template-columns: repeat(6, 1fr); 
-        grid-template-rows: repeat(16, 100px); 
+        grid-template-rows: repeat(16, 1fr); 
     }      
     .hel-in-primero {
         grid-area: 1 / 1 / span 6 / span 2;
@@ -655,6 +676,8 @@ input{
                         .forward-seat{
                             width: 30px;
                             height: 40px;
+                            
+                            
                         }
                         .rear-seat{
                             width: 30px;
@@ -663,6 +686,7 @@ input{
                         .cargo-b1{
                             width: 50%;
                             height: 40%;
+                            
                         }
                     }        
 
@@ -701,3 +725,568 @@ input{
     .heli-foto{
         grid-area: 14/ 4 / span 2 / span 3;
     }
+
+                   
+}
+
+.mainManifest{
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    grid-template-rows: repeat(43, 1fr);
+    background-color:white;
+    border: solid 1px black;
+    color: black;
+}
+                            .salir{
+                                grid-area: 1 / 14 / span 1 / span 1;
+                                background-color:rgb(148, 43, 43);
+                                background-image:url(img/salir.png);
+                                background-size:60%;
+                                background-position: center; 
+                                background-repeat: no-repeat;
+                                color: white;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                border-radius: 50%;
+                                border-color: black;
+                                border: solid 3px black;
+                                
+                            }
+
+    .titleLM{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-area: 2 / 2 / span 3 / span 12;
+        border: solid 1px black;
+        background-color:white;
+        color:black;
+    }
+
+                    .titleLogo1{
+                        grid-area: 1 / 1 / span 3 / span 1;
+                        background-color:white;
+                        color: white;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                                #logoLM{
+                                    width: 110px;
+                                    height: 110px;
+                                    margin: 0%; 
+                                    text-align: center;
+                                    border-radius: 10px;
+                                    background-color:white;
+                                }
+                    .titleLM1{
+                        grid-area: 1 / 2 / span 3 / span 1;
+                        background-color:white;
+                        background-image:url(img/bell505mio.png);
+                        background-size:100%;
+                        background-position: center; 
+                        background-repeat: no-repeat;
+                        color: black;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .titleLM2{
+                        grid-area: 1 / 3 / span 3 / span 1;
+                        background-color:white;
+                        color:black;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .titleLogo2{
+                        grid-area: 1 / 4 / span 3 / span 1;
+                        background-color:white;
+                        color: white;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                                #logoELM{
+                                    width: 110px;
+                                    height: 110px;
+                                    margin: 0%; 
+                                    text-align: center;
+                                    border-radius: 10px;
+                                    background-color:white;
+                                }
+    .title2LM{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-area: 5 / 2 / span 2 / span 12;
+        border: solid 1px black;
+        background-color:white;
+        color:black;
+    }
+
+                    .title2LM1{
+                        grid-area: 1 / 1 / span 2 / span 1;
+                        background-color:white;
+                        color: black;
+                    }
+                    .title2LM2{
+                        grid-area: 1 / 2 / span 2 / span 1;
+                        background-color:white;
+                        color:black;
+                    }
+                    .title2LM3{
+                        grid-area: 1 / 3 / span 2 / span 1;
+                        background-color:white;
+                        color: black;
+                    }
+                    .title2LM4{
+                        grid-area: 1 / 4 / span 2 / span 1;
+                        background-color:white;
+                        color:black;
+                    }
+    
+                    .weightDataLM{
+                        gap: 0px;
+                        display: grid;
+                        grid-template-columns: repeat(9, 1fr);
+                        grid-template-rows: repeat(15, 1fr);
+                        grid-area: 7 / 2 / span 15 / span 8;
+                        background-color:white;
+                        color:black;
+                    }
+                                    .armLM{
+                                        display: grid;
+                                        grid-template-columns: repeat(10, 1fr);
+                                        grid-template-rows: repeat(1, 1fr);
+                                        grid-area: 1 / 1 / span 1 / span 9;
+                                        border: solid 1px black;
+                                        background-color:white;
+                                        color:black;
+                                    }
+                                            
+                                            .blank{
+                                                grid-area: 1 / 1 / span 1 / span 3;
+                                                border: solid 1px black;
+                                                background-color:white;
+                                                color:black;
+                                            }
+                                            .long{
+                                                display: grid;
+                                                grid-template-columns: 1fr;
+                                                grid-template-rows: repeat(2, 1fr);
+                                                grid-area: 1 / 4 / span 1 / span 4;
+                                                border: solid 1px black;
+                                                background-color:white;
+                                                color:black;
+                                                text-align: center;
+                                            }
+                                                        .long1{
+                                                            grid-area: 1/ 1;
+                                                            font-size: 100%;
+                                                            background-color:white;
+                                                            color:black;
+                                                        }
+                                                        .long2{
+                                                            display: grid;
+                                                            grid-template-columns: repeat (4, 1fr);
+                                                            grid-template-rows: repeat(1, 1fr);
+                                                            grid-area: 2/ 1;
+                                                            background-color:white;
+                                                            color:black;
+                                                        }
+                                                                .longA{
+                                                                    grid-area: 1/ 1;
+                                                                    font-size: 1vw;
+                                                                    background-color:white;
+                                                                    color:black;
+                                                                }
+                                                                .longB{
+                                                                    grid-area: 1/ 2;
+                                                                    font-size: 1vw;
+                                                                    background-color:white;
+                                                                    color:black;
+                                                                }
+                                                                .longC{
+                                                                    grid-area: 1/ 3;
+                                                                    font-size: 1vw;
+                                                                    background-color:white;
+                                                                    color:black;
+                                                                }
+                
+                                            .lat{
+                                                display: grid;
+                                                grid-template-columns: 1fr;
+                                                grid-template-rows: repeat(2, 1fr);
+                                                grid-area: 1 / 8 / span 1 / span 3;
+                                                border: solid 1px black;
+                                                background-color:white;
+                                                color:black;
+                                                text-align: center;
+                                            }
+                                                    .lat1{
+                                                        grid-area: 1/ 1;
+                                                        background-color:white;
+                                                        color:black;
+                                                    }
+                                                    .lat2{
+                                                        display: grid;
+                                                        grid-template-columns: repeat (3, 1fr);
+                                                        grid-template-rows: repeat(1, 1fr);
+                                                        grid-area: 2/ 1;
+                                                        font-size: 1vw;
+                                                        background-color:white;
+                                                        color:black;
+                                                    }
+                                                                .latA{
+                                                                    grid-area: 1/ 1;
+                                                                    font-size: 1vw;
+                                                                    background-color:white;
+                                                                    color:black;
+                                                                }
+                                                                .latB{
+                                                                    grid-area: 1/ 2;
+                                                                    font-size: 1vw;
+                                                                    background-color:white;
+                                                                    color:black;
+                                                                }
+                
+                
+                                    .HelicopterLM{
+                                        display: grid;
+                                        grid-template-columns: repeat(10, 1fr);
+                                        grid-template-rows: repeat(1, 1fr);
+                                        grid-area: 2 / 1 / span 1 / span 9;
+                                        border: solid 2px blue;
+                                        background-color:white;
+                                        color:black;
+                                        
+                                    }
+                
+                                            .slr1{
+                                                grid-area: 1 / 1 / span 1 / span 3;
+                                                border: solid 1px black;
+                                                background-color:white;
+                                                color:black;
+                                                display: flex;
+                                                align-items: center;
+                                                text-align:left;
+                                            }
+                                            .slr2{
+                                                grid-area: 1 / 4 / span 1 / span 1;
+                                                border: solid 1px black;
+                                                background-color:white;
+                                                color:black;
+                                                display: flex;
+                                                align-items: center;
+                                                text-align:left;
+                                            }
+                                            .slr3{
+                                                grid-area: 1 / 5 / span 1 / span 1;
+                                                border: solid 1px black;
+                                                background-color:white;
+                                                color:black;
+                                                display: flex;
+                                                align-items: center;
+                                                text-align:left;
+                                            }
+                                            .slr4{
+                                                grid-area: 1 / 6 / span 1 / span 2;
+                                                border: solid 1px black;
+                                                background-color:white;
+                                                color:black;
+                                                display: flex;
+                                                align-items: center;
+                                                text-align:left;
+                                            }
+                                            .slr5{
+                                                grid-area: 1 / 8 / span 1 / span 1;
+                                                border: solid 1px black;
+                                                background-color:white;
+                                                color:black;
+                                                display: flex;
+                                                align-items: center;
+                                                text-align:left;
+                                            }
+                                            .slr6{
+                                                grid-area: 1 / 9 / span 1 / span 2;
+                                                border: solid 1px black;
+                                                background-color:white;
+                                                color:black;
+                                                display: flex;
+                                                align-items: center;
+                                                text-align:left;
+                                            }
+                                    .pilotLM{
+                                        display: grid;
+                                        grid-template-columns: repeat(10, 1fr);
+                                        grid-template-rows: repeat(1, 1fr);
+                                        grid-area: 3 / 1 / span 1 / span 9;
+                                        border: solid 1px black;
+                                        background-color:white;
+                                        color:black;
+                                    }
+                                    .cpLM{
+                                        display: grid;
+                                        grid-template-columns: repeat(10, 1fr);
+                                        grid-template-rows: repeat(1, 1fr);
+                                        grid-area: 4 / 1 / span 1 / span 9;
+                                        border: solid 1px black;
+                                        background-color:white;
+                                        color:black;
+                                    }
+                                    .lLM{
+                                        display: grid;
+                                        grid-template-columns: repeat(10, 1fr);
+                                        grid-template-rows: repeat(1, 1fr);
+                                        grid-area: 5 / 1 / span 1 / span 9;
+                                        border: solid 1px black;
+                                        background-color:white;
+                                        color:black;
+                                    }
+                                    .cLM{
+                                        display: grid;
+                                        grid-template-columns: repeat(10, 1fr);
+                                        grid-template-rows: repeat(1, 1fr);
+                                        grid-area: 6 / 1 / span 1 / span 9;
+                                        border: solid 1px black;
+                                        background-color:white;
+                                        color:black;
+                                    }
+                                    .rLM{
+                                        display: grid;
+                                        grid-template-columns: repeat(10, 1fr);
+                                        grid-template-rows: repeat(1, 1fr);
+                                        grid-area: 7 / 1 / span 1 / span 9;
+                                        border: solid 1px black;
+                                        background-color:white;
+                                        color:black;
+                                    }
+                                    .cargoLM{
+                                        display: grid;
+                                        grid-template-columns: repeat(10, 1fr);
+                                        grid-template-rows: repeat(1, 1fr);
+                                        grid-area: 8 / 1 / span 1 / span 9;
+                                        border: solid 1px black;
+                                        background-color:white;
+                                        color:black;
+                                    }
+                                    .hookLM{
+                                        display: grid;
+                                        grid-template-columns: repeat(10, 1fr);
+                                        grid-template-rows: repeat(1, 1fr);
+                                        grid-area: 9 / 1 / span 1 / span 9;
+                                        border: solid 1px black;
+                                        background-color:white;
+                                        color:black;
+                                    }
+                                    .zWeightLM{ display: grid;
+                                        grid-template-columns: repeat(10, 1fr);
+                                        grid-template-rows: repeat(1, 1fr);
+                                        grid-area: 10 / 1 / span 1 / span 9;
+                                        border: solid 2px blue;
+                                        background-color:white;
+                                        color:black;
+                                    }
+                                    .mFuelLM{ display: grid;
+                                        grid-template-columns: repeat(10, 1fr);
+                                        grid-template-rows: repeat(1, 1fr);
+                                        grid-area: 11 / 1 / span 1 / span 9;
+                                        border: solid 1px black;
+                                        background-color:white;
+                                        color:black;
+                                    }
+                                    .TOWeightLM{ display: grid;
+                                        grid-template-columns: repeat(10, 1fr);
+                                        grid-template-rows: repeat(1, 1fr);
+                                        grid-area: 12 / 1 / span 1 / span 9;
+                                        border: solid 2px blue;
+                                        background-color:white;
+                                        color:black;
+                                    }
+                                    .uFuelLM{ display: grid;
+                                        grid-template-columns: repeat(10, 1fr);
+                                        grid-template-rows: repeat(1, 1fr);
+                                        grid-area: 13 / 1 / span 1 / span 9;
+                                        border: solid 1px black;
+                                        background-color:white;
+                                        color:black;
+                                    }
+                                    .lFuelLM{ display: grid;
+                                        grid-template-columns: repeat(10, 1fr);
+                                        grid-template-rows: repeat(1, 1fr);
+                                        grid-area: 14 / 1 / span 1 / span 9;
+                                        border: solid 1px black;
+                                        background-color:white;
+                                        color:black;
+                                    }
+                                    .lWeightLM{ display: grid;
+                                        grid-template-columns: repeat(10, 1fr);
+                                        grid-template-rows: repeat(1, 1fr);
+                                        grid-area: 15 / 1 / span 1 / span 9;
+                                        border: solid 2px blue;
+                                        background-color:white;
+                                        color:black;
+                                    }
+                
+                
+    .signLM{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-area: 22 / 2 / span 3 / span 12;
+        border: solid 1px black;
+        background-color:white;
+        color:black;
+    }
+                .sign{
+                    grid-area: 1 / 1 / span 3 / span 1;
+                                border: solid 1px black;
+                                background-color:white;
+                                color:black;
+                }
+                .signName{
+                    grid-area: 1 / 2 / span 3 / span 1;
+                                border: solid 1px black;
+                                background-color:white;
+                                color:black;
+                }
+
+    
+    .flightDataLM{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        grid-area: 7 / 10 / span 5 / span 4;
+        border: solid 1px black;
+        background-color:white;
+        color:black;
+    }
+                .flightTitle{
+                    grid-area: 1 / 1 / span 1 / span 2;
+                                border: solid 1px black;
+                                background-color:white;
+                                color:black;
+                }
+                .slrr1{
+                    grid-area: 2 / 1 / span 1 / span 2;
+                                border: solid 1px black;
+                                background-color:white;
+                                color:black;
+                }
+                .slrr2{
+                    grid-area: 3 / 1 / span 1 / span 2;
+                                border: solid 1px black;
+                                background-color:white;
+                                color:black;
+                }
+                .slrr3{
+                    grid-area: 4 / 1 / span 1 / span 2;
+                                border: solid 1px black;
+                                background-color:white;
+                                color:black;
+                }
+                .slrr4{
+                    grid-area: 5 / 1 / span 1 / span 2;
+                                border: solid 1px black;
+                                background-color:white;
+                                color:black;
+                }
+                
+    .grafic1LM{
+        
+        grid-area: 12 / 10 / span 3 / span 4;
+        border: solid 1px black;
+        background-color:white;
+        color:black;
+    }
+    .grafic2LM{
+        grid-area: 15 / 10 / span 2 / span 4;
+        border: solid 1px black;
+        background-color:white;
+        color:black;
+    }
+    .manifest{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        grid-area: 17 / 10 / span 5 / span 4;
+        border: solid 1px black;
+        background-color:white;
+        color:black;
+    }
+
+                .manTitle{
+                    grid-area: 1 / 1 / span 1 / span 2;
+                    border: solid 1px black;
+                                background-color:white;
+                                color:black;
+                }
+                .slrrr1{
+                    grid-area: 2 / 1 / span 1 / span 2;
+                    border: solid 1px black;
+                                background-color:white;
+                                color:black;
+                }
+                .slrrr2{
+                    grid-area: 3 / 1 / span 1 / span 2;
+                    border: solid 1px black;
+                                background-color:white;
+                                color:black;
+                }
+                .slrrr3{
+                    grid-area: 4 / 1 / span 1 / span 2;
+                    border: solid 1px black;
+                                background-color:white;
+                                color:black;
+                }
+                .slrrr4{
+                    grid-area: 5 / 1 / span 1 / span 2;
+                    border: solid 1px black;
+                                background-color:white;
+                                color:black;
+                }
+                .slrrr5{
+                    grid-area: 6 / 1 / span 1 / span 2;
+                    border: solid 1px black;
+                    background-color:white;
+                    color:black;
+                }
+    .butoons{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr;
+        grid-area: 26 / 2 / span 2 / span 12;
+        background-color:white;
+        color:black;
+    }
+
+                .slrrrr1{
+                    border: solid 1px black;
+                    background-color:white;
+                    color:black;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .slrrrr2{
+                    border: solid 1px black;
+                    background-color:white;
+                    color:black;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .slrrrr3{
+                    border: solid 1px black;
+                    background-color:white;
+                    color:black;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+
+                
+
