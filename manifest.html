@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <title>manifest</title>
+</head>
+<body>
+    <main>
+        <div class="mainManifest">
+            <div class="salir"  onclick="window.location.href='index.html';"></div>
+            <div class="titleLM">
+                <h2 class="titleLogo1"><img src="img/LOGOKAEK.png" alt="Logo de mi página" id="logoLM"></h2>
+                <h2 class="titleLM1"></h2>
+                <h2 class="titleLM2">LOAD <br>MANIFEST</h2>
+                <h2 class="titleLogo2"><img src="img/logo-chip-mong.png" alt="Logo empresa" id="logoELM"></h2>
+                
+            </div>
+            <div class="title2LM">
+                <div class="title2LM1">Regitration:</div>
+                <div class="title2LM2">Date:</div>
+                <div class="title2LM3">FROM:</div>
+                <div class="title2LM4">TO:</div>
+            </div>
+            <div class="weightDataLM">
+                <div class="armLM">
+                    <div class="blank">ARM DATA</div>
+                    <div class="long">
+                        <div class="long1">LONGITUDINAL</div>
+                        <div class="long2">
+                            <div class="longA">Mass[lbs]</div>
+                            <div class="longB">Arm [in] </div>
+                            <div class="longC">Moment[lbs.in]</div>
+                        </div>
+                    </div>
+                    <div class="lat">
+                        <div class="lat1">LATERAL</div>
+                        <div class="lat2">
+                            <div class="latA">Arm [in] </div>
+                            <div class="latB">Moment[lbs.in]</div>
+                        </div>
+                    </div>
+                </div>   
+                <div class="HelicopterLM">
+                    <div class="blanco1 slr1">Helicopter</div>
+                    <div class="blanco2 slr2"></div>
+                    <div class="blanco3 slr3"></div>
+                    <div class="blanco4 slr4"></div>
+                    <div class="blanco5 slr5"></div>
+                    <div class="blanco6 slr6"></div>
+                </div> 
+                <div class="pilotLM"> 
+                    <div class="p1 slr1">Pilot Seat</div>
+                    <div class="p2 slr2"></div>
+                    <div class="p3 slr3"></div>
+                    <div class="p4 slr4"></div>
+                    <div class="p5 slr5">1.2</div>
+                    <div class="p6 slr6"></div>
+                </div>
+                <div class="cpLM">
+                    <div class="cp1 slr1">Forwar Seat</div>
+                    <div class="cp2 slr2"></div>
+                    <div class="cp3 slr3"></div>
+                    <div class="cp4 slr4"></div>
+                    <div class="cp5 slr5">1.2</div>
+                    <div class="cp6 slr6"></div>
+                </div>
+                <div class="lLM">
+                    <div class="l1 slr1">Left Rear Seat</div>
+                    <div class="l2 slr2"></div>
+                    <div class="l3 slr3"></div>
+                    <div class="l4 slr4"></div>
+                    <div class="l5 slr5"></div>
+                    <div class="l6 slr6"></div>
+                </div>
+                <div class="cLM">
+                    <div class="c1 slr1">Center Rear Seat</div>
+                    <div class="c2 slr2"></div>
+                    <div class="c3 slr3"></div>
+                    <div class="c4 slr4"></div>
+                    <div class="c5 slr5"></div>
+                    <div class="c6 slr6"></div>
+                </div>
+                <div class="rLM">
+                    <div class="r1 slr1">Right Rear Seat</div>
+                    <div class="r2 slr2" ></div>
+                    <div class="r3 slr3"></div>
+                    <div class="r4 slr4"></div>
+                    <div class="r5 slr5"></div>
+                    <div class="r6 slr6"></div>
+                </div>
+                <div class="cargoLM">
+                    <div class="cargo1 slr1">Cargo</div>
+                    <div class="cargo2 slr2" ></div>
+                    <div class="cargo3 slr3"></div>
+                    <div class="cargo4 slr4"></div>
+                    <div class="cargo5 slr5"></div>
+                    <div class="cargo6 slr6"></div>
+                </div>
+                <div class="hookLM">
+                    <div class="hook1 slr1">External / hook</div>
+                    <div class="hook2 slr2" ></div>
+                    <div class="hook3 slr3"></div>
+                    <div class="hook4 slr4"></div>
+                    <div class="hook5 slr5"></div>
+                    <div class="hook6 slr6"></div>
+                </div>
+                <div class="zWeightLM">
+                    <div class="zW1 slr1">ZFW</div>
+                    <div class="zW2 slr2"></div>
+                    <div class="zW3 slr3"></div>
+                    <div class="zW4 slr4"></div>
+                    <div class="zW5 slr5"></div>
+                    <div class="zW6 slr6"></div>
+                </div>
+                <div class="mFuelLM">
+                    <div class="mF1 slr1">Main Fuel</div>
+                    <div class="mF2 slr2"></div>
+                    <div class="mF3 slr3"></div>
+                    <div class="mF4 slr4"></div>
+                    <div class="mF5 slr5"></div>
+                    <div class="mF6 slr6"></div>
+                </div>
+                <div class="TOWeightLM">
+                    <div class="TW1 slr1">TOW</div>
+                    <div class="TW2 slr2" ></div>
+                    <div class="TW3 slr3"></div>
+                    <div class="TW4 slr4"></div>
+                    <div class="TW5 slr5"></div>
+                    <div class="TW6 slr6"></div>
+                </div>
+                <div class="uFuelLM">
+                    <div class="uF1 slr1">Fuel Burned</div>
+                    <div class="uF2 slr2" ></div>
+                    <div class="uF3 slr3"></div>
+                    <div class="uF4 slr4"></div>
+                    <div class="uF5 slr5"></div>
+                    <div class="uF6 slr6"></div>
+                </div>
+                <div class="lFuelLM">
+                    <div class="lF1 slr1">Ldg. Fuel</div>
+                    <div class="lF2 slr2" ></div>
+                    <div class="lF3 slr3"></div>
+                    <div class="lF4 slr4"></div>
+                    <div class="lF5 slr5"></div>
+                    <div class="lF6 slr6"></div>
+                </div>
+                <div class="lWeightLM">
+                    <div class="LW1 slr1">LW</div>
+                    <div class="LW2 slr2" ></div>
+                    <div class="LW3 slr3"></div>
+                    <div class="LW4 slr4"></div>
+                    <div class="LW5 slr5"></div>
+                    <div class="LW6 slr6"></div>
+                </div>
+            </div>
+            <div class="signLM">
+                <div class="sign">sign manifest</div>
+                <div class="signName">Pilot Name</div>
+            </div>
+            <div class="flightDataLM">
+                <div class="flightTitle"> FLIGHT DATA</div>
+                <div class="flightTHour slrr1">
+                    <div class="hourA">Departur time:</div>
+                    <div class="hourB">Destination time:</div>
+                </div>
+                <div class="flightTTime slrr2">flight Time
+                    <div>00h : 00min</div>
+                </div>
+                <div class="flightTParameters slrr3">
+                    <div class="parametersA">PA:</div>
+                    <div class="parametersB">OAT:</div>
+                </div>
+                <div class="flightTperformance slrr4">
+                    <div class="performanceA">OGE MAX WEIGHT:</div>
+                    <div class="performanceB">IGE MAX WEIGHT:</div>
+                </div>
+            </div>
+            <div class="grafic1LM">
+                
+            </div>
+            <div class="grafic2LM"></div>
+            <div class="manifest">
+                <div class="manTitle">PASENGER MANIFEST</div>
+                <div class="man1 slrrr1"></div>
+                <div class="man2 slrrr2"></div>
+                <div class="man3 slrrr3"></div>
+                <div class="man4 slrrr4"></div>
+                <div class="man5 slrrr5"></div>
+            </div>
+            <div class="butoons">
+                <div class="btoon1 slrrrr1">SIGN MANIFEST</div>
+                <div class="btoon2 slrrrr2">DELETE SIGNATURE</div>
+                <div class="btoon3 slrrrr3">SEND / PIRNT</div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="w&b.js"></script>
+    
+</body>
+</html>
