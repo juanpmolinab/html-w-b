@@ -16,14 +16,24 @@
                 <h2 class="ind primero"><img src="img/LOGOKAEKBLANCO.png" alt="Logo de mi página" id="logo"></h2>
                 <h2 class="ind segundo">Pilot: <br> <input id="pilot" type="text"></h2>
 
-                <h2 class="ind tercero">Regist: <br> <input id="registration" type="text"><ul id="helicopterList" style="display: none; list-style-type: none;">
-                    <!-- Aquí se generarán dinámicamente las opciones -->
-                </ul></h2> 
+                
+                <h2 class="ind tercero">Regist: <br> 
+                    <select id="optionsHelicopter" onchange="getValueFromDiv()">
+                        <option value="weightH1">XU-505</option>
+                        <option value="weightH2">XU-506</option>
+                        <option value="weightH3">XU-137</option>
+                        <option value="weightH4">option 4</option>
+                        <option value="weightH5">option 5</option>
+                        <option value="weightH6">option 6</option>
+                        
+                    </select>
+                </h2>
+                
 
-                <h2 class="ind cuarto"><p id="ige" >IGE</p></h2>
+                <h2 class="ind cuarto"><p id="ige" >32</p></h2>
                 <h2 class="ind quinto"><p>OGE</p></h2>
-                <h2 class="ind sexto"><p>LOAD M.</p></h2>
-                <h2 class="ind septimo" id="configuration" onclick="window.location.href='W&B.html';"><p>conf</p></h2>
+                <h2 class="ind sexto" onclick="window.location.href='manifest.html';"><p>LOAD M.</p></h2>
+                <h2 class="ind septimo" onclick="window.location.href='W&B.html';"><p>conf</p></h2>
                 <h2 class="ind octavo"><img src="img/logo-chip-mong.png" alt="Logo empresa" id="logoE"></h2>
                 <h2 class="ind uno">From: <br> <input id="From" tipe="text"></h2>
                 <h2 class="ind dos">To: <br> <input id="To" type="text"></h2>
@@ -41,49 +51,49 @@
                     <div class="pax-value-1">
                         <div class="pax-position-info">Seat (F1)</div>
                         <div class="pax-position-name">Name: <input class="name-value" type="text"></div>
-                        <div class="pax-value-numb">[<input class="weight-value sf" type="text"> lbs.]</div> <!-- Corrección aquí -->
+                        <!-- Corrección aquí -->
                     </div>
                     <div class="pax-value-scale"></div>
-                    <div class="pax-value-3" id="pax-value"><input type="range" id="escala-sf" min="0" max="250" value="0">
-                        <span id="valor-sf">0</span>
+                    <div class="pax-value-3" id="pax-value"><input class="sf" type="range" id="escala-sf" min="0" max="250" value="0">
+                        [<span  id="valor-sf">0</span>lbs.]
                     </div>
                 </div>
                 <div class="pax-weight-2">
                     <div class="pax-value-1">
                         <div class="pax-position-info">Seat (RL)</div>
                         <div class="pax-position-name">Name: <input class="name-value" type="text"></div>
-                        <div class="pax-value-numb">[<input class="weight-value srl" type="text"> lbs.]</div>
+                        
                     </div>
                     <div class="pax-value-scale"></div>
-                    <div class="pax-value-3" id="pax-value"><input type="range" id="escala-srl" min="0" max="250" value="0">
-                        <span id="valor-srl">0</span>
+                    <div class="pax-value-3" id="pax-value"><input class="srl" type="range" id="escala-srl" min="0" max="250" value="0">
+                        [<span id="valor-srl">0</span>lbs.]
                     </div>
                 </div>
                 <div class="pax-weight-3">
                     <div class="pax-value-1">
                         <div class="pax-position-info">Seat (CC)</div>
                         <div class="pax-position-name">Name: <input class="name-value" type="text"></div>
-                        <div class="pax-value-numb">[<input class="weight-value src" type="text"> lbs.]</div>
+                        
                     </div>
                     <div class="pax-value-scale"></div>
-                    <div class="pax-value-3" id="pax-value"><input type="range" id="escala-src" min="0" max="250" value="0">
-                        <span id="valor-src">0</span>
+                    <div class="pax-value-3" id="pax-value"><input class="src" type="range" id="escala-src" min="0" max="250" value="0">
+                        [<span id="valor-src">0</span>lbs.]
                     </div>
                 </div>
             </div>
 
             <div class="hel-in-segundo">
                 <div class="hel-sillas-delantera">
-                    <div class="forward-seat fo">F1</div>
-                    <div class="forward-seat p">P</div>
+                    <div class="forward-seat fo" id="seat-f1">F1</div>
+                    <div class="forward-seat p" id="seat-p">P</div>
                 </div>
                 <div class="hel-sillas-tracera">
-                    <div class="rear-seat b1">RL</div>
-                    <div class="rear-seat b2">RC</div>
-                    <div class="rear-seat b3">RR</div>
+                    <div class="rear-seat b1" id="seat-rl">RL</div>
+                    <div class="rear-seat b2" id="seat-cc">RC</div>
+                    <div class="rear-seat b3" id="seat-rr">RR</div>
                 </div>
                 <div class="hel-sillas-cargo">
-                    <div class="cargo-b1">CARGO</div>
+                    <div class="cargo-b1" id="seat-cargo">CARGO</div>
                 </div>
             </div>
 
@@ -92,33 +102,33 @@
                     <div class="pax-value-1">
                         <div class="pax-position-info">Pilot Seat</div>
                         <div class="pax-position-name">Name: <input class="name-value" id="pilot1" type="text"></div>
-                        <div class="pax-value-numb">[<input class="weight-value ps" type="text"> lbs.]</div>
+                        
                     </div>
                     <div class="pax-value-scale"></div>
-                    <div class="pax-value-3" id="pax-value"><input type="range" id="escala-ps" min="0" max="250" value="0">
-                        <span id="valor-ps">0</span>
+                    <div class="pax-value-3" id="pax-value"><input class="ps" type="range" id="escala-ps" min="0" max="250" value="0">
+                        [<span id="valor-ps">0</span>lbs.]
                     </div>
                 </div>
                 <div class="pax-weight-5">
                     <div class="pax-value-1">
                         <div class="pax-position-info">Seat Rear R</div>
                         <div class="pax-position-name">Name: <input class="name-value" type="text"></div>
-                        <div class="pax-value-numb">[<input class="weight-value srr" type="text"> lbs.]</div>
+                        
                     </div>
                     <div class="pax-value-scale"></div>
-                    <div class="pax-value-3" id="pax-value"><input type="range" id="escala-srr" min="0" max="250" value="0">
-                        <span id="valor-srr">0</span>
+                    <div class="pax-value-3" id="pax-value"><input class="srr" type="range" id="escala-srr" min="0" max="250" value="0">
+                        [<span id="valor-srr">0</span>lbs.]
                     </div>
                 </div>
                 <div class="pax-weight-6">
                     <div class="pax-value-1">
                         <div class="pax-position-info">GARGO</div>
                         <div class="pax-position-name"></div>
-                        <div class="pax-value-numb">[<input class="weight-value g" type="text"> lbs.]</div>
+                        
                     </div>
                     <div class="pax-value-scale"></div>
-                    <div class="pax-value-3" id="pax-value"><input type="range" id="escala-g" min="0" max="250" value="0">
-                        <span id="valor-g">0</span>
+                    <div class="pax-value-3" ><input class="g" type="range" id="escala-g" min="0" max="250" value="0">
+                        [<span id="valor-g">0</span>lbs.]
                     </div>
                 </div>
             </div>
@@ -157,18 +167,18 @@
 
             <div class="combustible">
                 <div class="usableFuel">
-                    <div class="fuel-value-1">[<input class="fuel-value fuel" type="text">] lbs. [<input class="precentege-value-fuel" type="text" id="percentageFuel">] % Usable Fuel</div>
+                    <div class="fuel-value-1"> [<input class="precentege-value-fuel" type="text" id="percentageFuel">] % Usable Fuel</div>
                     <div class="pax-value-scale"></div>
                     <div class="fuel-value-3" id="fuel-value"><input type="range" id="escala-fuel" min="0" max="580" value="0">
-                        <span id="valor-fuel">0</span>
+                        [<span id="valor-fuel">0</span>lbs.]
                     </div>
                 </div>
                 <div class="landFuel">
-                    <div class="fuelLand-value-1">[<input class="fuelLand-value fuelLand" type="text">] lbs.[<input class="fuelLand-value fuelLand" type="text" id="percentageFuelLand">] %. Landing Fuel</div>
+                    <div class="fuelLand-value-1">[<input class="fuelLand-value fuelLand" type="text" id="percentageFuelLand">] %. Landing Fuel</div>
                     <div class="pax-value-scale"></div>
-                    <div class="fuelLand-value-3" id="fuelLand-value"><input type="range" id="escala-fuelLand" min="0" max="580" value="0">
-                        <span id="valor-fuelLand">0</span>
-                    </div>
+                    <div class="fuelLand-value-3" id="fuelLand-value"><input type="range" id="escala-fuelLand" min="0" max="580" value="0"><br>
+                        [<span id="valor-fuelLand">0</span>lbs.]
+                    </div><br>
                 </div>
                 <div class="stank">
                     <div class="stank1" id="stank1"></div>
@@ -184,4 +194,4 @@
     </main>
     <script src="w&b.js"></script>
 </body>
-</html>   
+</html>
