@@ -681,11 +681,11 @@ input{
                     position: relative;
                 }
                  
-                        .fo{
+                       .fo{
                             width: 30px;
                             height: 40px;
                             position: absolute;
-                            bottom: 0;
+                            bottom: -20%;
                             left: 30%;
                         }    
                         
@@ -693,10 +693,13 @@ input{
                             width: 30px;
                             height: 40px;
                             position: absolute;
-                            bottom: 0;
+                            bottom: -20%;
                             right: 30%;
 
                         }
+               
+                
+               
                         .rear-seat{
                             width: 30px;
                             height: 40px;
@@ -709,10 +712,10 @@ input{
                             width: 50%;
                             height: 25%;
                             position: absolute;
-                            top: 0;
+                            top: -20%;
                             
                         }
-                    }        
+                    }           
 
     .hel-in-tercero {
         grid-area: 1 / 5 / span 6 / span 2;
