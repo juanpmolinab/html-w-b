@@ -360,7 +360,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function syncPilotFields() {
         const pilot = document.getElementById('pilot');
-        const pilot1 = document.getElementById('pilot1');
+        const pilot1 = document.getElementById('PS');
     
         // Función para sincronizar ambos campos y guardar el valor en localStorage
         function updateBothFields(value) {
@@ -383,6 +383,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    
     // ------------------------
     // 7. Función de Graficación
     // ------------------------
@@ -557,32 +558,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // 8. Función para Calcular Peso
     // ------------------------
 
-    function calculateWeight() {
-        const altitude = parseFloat(document.getElementById("Alt").value);
-        const temperature = parseFloat(document.getElementById("T°").value);
-        const ige = document.getElementById("ige");
-
-        let maxWeight = 0;
-
-        if (altitude <= 2000) {
-            if (temperature <= 20) {
-                maxWeight = 4475;
-            } else if (temperature <= 40) {
-                maxWeight = 4000;
-            }
-        } else if (altitude <= 6000) {
-            if (temperature <= 20) {
-                maxWeight = 4200;
-            } else if (temperature <= 40) {
-                maxWeight = 3800;
-            }
-        }
-
-        if (ige) {
-            ige.textContent = maxWeight ? `${maxWeight}LB` : '';
-        }
-    }
-
     // ------------------------
     // 9. Agregar Event Listeners Adicionales
     // ------------------------
@@ -595,6 +570,7 @@ document.addEventListener("DOMContentLoaded", function() {
             actualizarSuma();
             actualizarSumaArm();
             grafic();
+            
         });
 
         document.getElementById('escala-fuelLand').addEventListener('input', () => {
@@ -603,6 +579,7 @@ document.addEventListener("DOMContentLoaded", function() {
             actualizarSuma();
             actualizarSumaArm();
             grafic();
+            
         });
 
         // Consumir evento 'input' para el consumo
@@ -612,14 +589,14 @@ document.addEventListener("DOMContentLoaded", function() {
             actualizarSuma();
             actualizarSumaArm();
             grafic();
+            
         });
 
         
         
 
         // Calcular peso basado en Altitud y Temperatura
-        document.getElementById('Alt').addEventListener('input', calculateWeight);
-        document.getElementById('T°').addEventListener('input', calculateWeight);
+        
     }
 
     // ------------------------
@@ -636,10 +613,10 @@ document.addEventListener("DOMContentLoaded", function() {
         actualizarSuma();
         actualizarSumaArm();
         grafic();
-        calculateWeight();
-        syncPilotFields();
+        
         calculateEndurance();
         calculateReserve();
+        syncPilotFields()
 
     }
 
@@ -817,13 +794,12 @@ const elementosConfig = {
     r: { valor1: ".r2", valor2: ".r3", resultado1: ".r4", valor3: ".r5", resultado2: ".r6" },
     cargo: { valor1: ".cargo2", valor2: ".cargo3", resultado1: ".cargo4", valor3: ".cargo5", resultado2: ".cargo6" },
     hook: { valor1: ".hook2", valor2: ".hook3", resultado1: ".hook4", valor3: ".hook5", resultado2: ".hook6" },
-    zW: { valor1: ".zW2", valor2: ".zW3", resultado1: ".zW4", valor3: ".zW5", resultado2: ".zW6" },
     mF: { valor1: ".mF2", valor2: ".mF3", resultado1: ".mF4", valor3: ".mF5", resultado2: ".mF6" },
-    TW: { valor1: ".TW2", valor2: ".TW3", resultado1: ".TW4", valor3: ".TW5", resultado2: ".TW6" },
     uF: { valor1: ".uF2", valor2: ".uF3", resultado1: ".uF4", valor3: ".uF5", resultado2: ".uF6" },
     lF: { valor1: ".lF2", valor2: ".lF3", resultado1: ".lF4", valor3: ".lF5", resultado2: ".lF6" },
-    LW: { valor1: ".LW2", valor2: ".LW3", resultado1: ".LW4", valor3: ".LW5", resultado2: ".LW6" }
+    
 };
+
 
 // Función para calcular el momento basado en el conjunto de elementos
 function calcularMomento(config) {
@@ -834,64 +810,20 @@ function calcularMomento(config) {
     const resultado2 = document.querySelector(config.resultado2);
 
     if (valor1 && valor2 && resultado1 && valor3 && resultado2) {
-        const valor1Num = parseFloat(valor1.value || valor1.textContent) || 0;
-        const valor2Num = parseFloat(valor2.value || valor2.textContent) || 0;
-        const valor3Num = parseFloat(valor3.value || valor3.textContent) || 0;
+        const valor1Num = parseFloat(valor1.textContent) || 0;
+        const valor2Num = parseFloat(valor2.textContent) || 0;
+        const valor3Num = parseFloat(valor3.textContent) || 0;
 
-        resultado1.textContent = valor1Num * valor2Num;
-        resultado2.textContent = valor1Num * valor3Num;
+        resultado1.textContent = !isNaN(valor1Num * valor2Num) ? valor1Num * valor2Num : 0;
+        resultado2.textContent = !isNaN(valor1Num * valor3Num) ? valor1Num * valor3Num : 0;
     }
-}
-
-// Iterar sobre cada conjunto de elementos para aplicar la función de cálculo y asignar eventos
-function calcularMomentos() {
-    Object.values(elementosConfig).forEach(config => {
-        calcularMomento(config); // Ejecutar el cálculo cada vez que cambia el valor en localStorage
-    });
-}
-
-// Escuchar el evento input para actualizar en index.html y recalcular en manifest.html
-document.addEventListener('input', (event) => {
-    if (event.target.id === 'escala-ps') {
-        guardarValorPax();
-    }
-});
-
-// Al cargar la página, inicializa los valores
-window.addEventListener('load', () => {
-    inicializarValorPax(); // Para index.html
-    cargarValorPax();      // Para manifest.html
-});
-
-   
-
-// Función para transferir los valores de W&B.html a manifest.html
-// Función para guardar los valores en localStorage desde W&B.html
-function guardarValoresWnB() {
-    const configuraciones = [
-        { idSource: 'weightH1', key: 'arms0Value' },
-        { idSource: 'arms1', key: 'arms1Value' },
-        { idSource: 'arms2', key: 'arms2Value' },
-        { idSource: 'arms3', key: 'arms3Value' },
-        { idSource: 'arms4', key: 'arms4Value' },
-        { idSource: 'arms5', key: 'arms5Value' },
-        { idSource: 'arms6', key: 'arms6Value' },
-        { idSource: 'arms7', key: 'arms7Value' }
-    ];
-
-    configuraciones.forEach(config => {
-        const valorFuente = document.getElementById(config.idSource);
-        if (valorFuente) {
-            localStorage.setItem(config.key, valorFuente.textContent); // Guarda el valor en localStorage
-        }
-    });
 }
 
 // Función para transferir los valores de localStorage a manifest.html
 function transferirValores() {
     const configuraciones = [
         { key: 'arms0Value', selector: '.blanco2' },
-        { key: 'arms1Value', selector: '.cp3.slr3' },
+        { key: 'arms1Value', selector: '.cp3' },
         { key: 'arms2Value', selector: '.p3' },
         { key: 'arms3Value', selector: '.l3' },
         { key: 'arms4Value', selector: '.c3' },
@@ -910,13 +842,280 @@ function transferirValores() {
     });
 }
 
-// Llama a la función al cargar manifest.html
-window.addEventListener('load', () => {
-    transferirValores(); // Transfiere valores al cargar manifest.html
+// Promesa para esperar a que se complete la transferencia y luego calcular
+function transferirYCalcular() {
+    return new Promise((resolve) => {
+        transferirValores();
+        resolve(); // Indica que la transferencia está completa
+    });
+}
+
+// Ejecutar el cálculo después de transferir los valores
+window.addEventListener('load', async () => {
+    await transferirYCalcular();
+    calcularMomentos(); // Ejecuta los cálculos después de transferir los valores
 });
 
-// Guarda valores en localStorage al cargar W&B.html
+// Función para iterar sobre cada conjunto de elementos y aplicar el cálculo
+function calcularMomentos() {
+    Object.values(elementosConfig).forEach(config => calcularMomento(config));
+}
+
+// Función para guardar valores en localStorage desde index.html
+function guardarValores1() {
+    const configuraciones = [
+        { idSource: 'f1', key: 'F1Value' },
+        { idSource: 'RL', key: 'RLValue' },
+        { idSource: 'CC', key: 'CCValue' },
+        { idSource: 'PS', key: 'PSValue' },
+        { idSource: 'R', key: 'RValue' }
+    ];
+
+    configuraciones.forEach(config => {
+        const inputElement = document.getElementById(config.idSource);
+        if (inputElement) {
+            localStorage.setItem(config.key, inputElement.value); // Guarda el valor del input en localStorage
+            console.log(`Guardado ${config.key}: ${inputElement.value}`);
+        }
+    });
+}
+
+// Función para transferir valores de localStorage a manifest.html
+function transferirValores1() {
+    const configuraciones = [
+        { key: 'F1Value', selector: '.man1' },
+        { key: 'RLValue', selector: '.man2' },
+        { key: 'CCValue', selector: '.man3' },
+        { key: 'PSValue', selector: '.man4' },
+        { key: 'RValue', selector: '.man5' }
+    ];
+
+    configuraciones.forEach(config => {
+        const valorGuardado = localStorage.getItem(config.key);
+        const destinoDiv = document.querySelector(config.selector);
+        
+        if (destinoDiv && valorGuardado !== null) {
+            destinoDiv.textContent = valorGuardado;
+            console.log(`Transferido ${config.key}: ${valorGuardado}`);
+        }
+    });
+}
+
+// Detectar la página actual y ejecutar la función correspondiente
 window.addEventListener('load', () => {
-    guardarValoresWnB(); // Guarda valores al cargar W&B.html
+    const url = window.location.href;
+    const isIndexPage = url.includes('index.html');
+    const isManifestPage = url.includes('manifest.html');
+
+    if (isIndexPage) {
+        guardarValores1(); // Guarda valores al cargar index.html
+    } else if (isManifestPage) {
+        transferirValores1(); // Transfiere valores al cargar manifest.html
+    }
 });
 
+
+
+
+
+const abaco = {
+    temperaturas: [-40, -30, -20, -10, 0, 10, 20, 30, 40, 49, 50], // °C
+    altitudes: [-2000, 0, 2000, 4000, 6000, 8000, 10000, 12000, 14000, 16000, 18000, 20000], // metros
+    maxPesos: [
+      [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3600, 3300], // para -40°C
+      [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3500, 3220], // para-30°C
+      [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3600, 3300, 3000], // para -20°C
+      [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3400, 3080, 2800], // para -10°C
+      [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3400, 3180, 2850, 2200], // para 0°C
+      [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3450, 3150, 2900, 2200, 2200], // para 10°C
+      [3680, 3680, 3680, 3680, 3680, 3680, 3520, 3240, 2980, 2200, 2200, 2200], // para 20°C
+      [3680, 3680, 3680, 3680, 3680, 3550, 3290, 2200, 2200, 2200, 2200, 2200], // para 30°C
+      [3680, 3680, 3680, 3680, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200], // para 40°C
+      [3680, 3680, 3680, 3680, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200], // para 49°C
+      [3680, 3680, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200], // para 50°C
+    ]
+  };
+  
+  // Función de interpolación lineal
+  function interpolar(x1, y1, x2, y2, x) {
+    return y1 + ((y2 - y1) / (x2 - x1)) * (x - x1);
+  }
+  
+  // Función para calcular el peso máximo
+  function calcularPesoMaximoIog(temperatura, altitud) {
+    const tempIdx = abaco.temperaturas.findIndex((t) => t >= temperatura);
+    const altIdx = abaco.altitudes.findIndex((a) => a >= altitud);
+  
+    if (tempIdx === -1 || altIdx === -1 || tempIdx === 0 || altIdx === 0) {
+      return "Datos fuera de rango";
+    }
+  
+    // Interpolación entre las temperaturas
+    const pesoAltTemp1 = interpolar(
+      abaco.altitudes[altIdx - 1],
+      abaco.maxPesos[tempIdx - 1][altIdx - 1],
+      abaco.altitudes[altIdx],
+      abaco.maxPesos[tempIdx - 1][altIdx],
+      altitud
+    );
+  
+    const pesoAltTemp2 = interpolar(
+      abaco.altitudes[altIdx - 1],
+      abaco.maxPesos[tempIdx][altIdx - 1],
+      abaco.altitudes[altIdx],
+      abaco.maxPesos[tempIdx][altIdx],
+      altitud
+    );
+  
+    // Interpolación final con la temperatura
+    return interpolar(
+      abaco.temperaturas[tempIdx - 1],
+      pesoAltTemp1,
+      abaco.temperaturas[tempIdx],
+      pesoAltTemp2,
+      temperatura
+    );
+  }
+  
+  // Actualizar el resultado automáticamente
+  function actualizarResultadoAbaco() {
+    const temperatura = parseFloat(document.getElementById("T°").value);
+    const altitud = parseFloat(document.getElementById("Alt").value);
+  
+    if (!isNaN(temperatura) && !isNaN(altitud)) {
+      const pesoMaximo = calcularPesoMaximoIog(temperatura, altitud);
+      document.getElementById("ige").value = pesoMaximo;
+  
+      // Guardar valores en localStorage
+      localStorage.setItem("T°", temperatura);
+      localStorage.setItem("Alt", altitud);
+    }
+  }
+  
+  // Cargar valores guardados en localStorage al cargar la página
+  function cargarValoresGuardadosAbaco() {
+    const temperaturaGuardada = localStorage.getItem("T°");
+    const altitudGuardada = localStorage.getItem("Alt");
+  
+    if (temperaturaGuardada !== null) {
+      document.getElementById("T°").value = temperaturaGuardada;
+    }
+  
+    if (altitudGuardada !== null) {
+      document.getElementById("Alt").value = altitudGuardada;
+    }
+  
+    // Calcular el peso máximo con los valores cargados
+    actualizarResultadoAbaco();
+  }
+  
+  // Agregar eventos de cambio a los inputs
+  document.getElementById("T°").addEventListener("input", actualizarResultadoAbaco);
+  document.getElementById("Alt").addEventListener("input", actualizarResultadoAbaco);
+  
+  // Ejecutar al cargar la página
+  cargarValoresGuardadosAbaco();
+    // Datos de ejemplo del ábaco (simplificados)
+
+
+
+
+    const abacoOge = {
+        temperaturas: [-40, -30, -20, -10, 0, 10, 20, 30, 40, 49, 50], // °C
+        altitudes: [-2000, 0, 2000, 4000, 6000, 8000, 10000, 12000, 14000, 16000, 18000, 20000], // metros
+        maxPesos: [
+          [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3600, 3300], // para -40°C
+          [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3500, 3220], // para-30°C
+          [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3600, 3300, 3000], // para -20°C
+          [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3400, 3080, 2800], // para -10°C
+          [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3400, 3180, 2850, 2200], // para 0°C
+          [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3450, 3150, 2900, 2200, 2200], // para 10°C
+          [3680, 3680, 3680, 3680, 3680, 3680, 3520, 3240, 2980, 2200, 2200, 2200], // para 20°C
+          [3680, 3680, 3680, 3680, 3680, 3550, 3290, 2200, 2200, 2200, 2200, 2200], // para 30°C
+          [3680, 3680, 3680, 3680, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200], // para 40°C
+          [3680, 3680, 3680, 3680, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200], // para 49°C
+          [3680, 3680, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200], // para 50°C
+        ]
+      };
+      
+      // Función de interpolación lineal
+      function interpolar(x1, y1, x2, y2, x) {
+        return y1 + ((y2 - y1) / (x2 - x1)) * (x - x1);
+      }
+      
+      // Función para calcular el peso máximo
+      function calcularPesoMaximoOge(temperatura, altitud) {
+        const tempIdx = abacoOge.temperaturas.findIndex((t) => t >= temperatura);
+        const altIdx = abacoOge.altitudes.findIndex((a) => a >= altitud);
+      
+        if (tempIdx === -1 || altIdx === -1 || tempIdx === 0 || altIdx === 0) {
+          return "Datos fuera de rango";
+        }
+      
+        // Interpolación entre las temperaturas
+        const pesoAltTemp1 = interpolar(
+          abacoOge.altitudes[altIdx - 1],
+          abacoOge.maxPesos[tempIdx - 1][altIdx - 1],
+          abacoOge.altitudes[altIdx],
+          abacoOge.maxPesos[tempIdx - 1][altIdx],
+          altitud
+        );
+      
+        const pesoAltTemp2 = interpolar(
+          abacoOge.altitudes[altIdx - 1],
+          abacoOge.maxPesos[tempIdx][altIdx - 1],
+          abacoOge.altitudes[altIdx],
+          abacoOge.maxPesos[tempIdx][altIdx],
+          altitud
+        );
+      
+        // Interpolación final con la temperatura
+        return interpolar(
+          abacoOge.temperaturas[tempIdx - 1],
+          pesoAltTemp1,
+          abacoOge.temperaturas[tempIdx],
+          pesoAltTemp2,
+          temperatura
+        );
+      }
+      
+      // Actualizar el resultado automáticamente
+      function actualizarResultadoAbacoOge() {
+        const temperatura = parseFloat(document.getElementById("T°").value);
+        const altitud = parseFloat(document.getElementById("Alt").value);
+      
+        if (!isNaN(temperatura) && !isNaN(altitud)) {
+          const pesoMaximo = calcularPesoMaximoOge(temperatura, altitud);
+          document.getElementById("oge").value = pesoMaximo;
+      
+          // Guardar valores en localStorage
+          localStorage.setItem("T°", temperatura);
+          localStorage.setItem("Alt", altitud);
+        }
+      }
+      
+      // Cargar valores guardados en localStorage al cargar la página
+      function cargarValoresGuardadosAbacoOge() {
+        const temperaturaGuardada = localStorage.getItem("T°");
+        const altitudGuardada = localStorage.getItem("Alt");
+      
+        if (temperaturaGuardada !== null) {
+          document.getElementById("T°").value = temperaturaGuardada;
+        }
+      
+        if (altitudGuardada !== null) {
+          document.getElementById("Alt").value = altitudGuardada;
+        }
+      
+        // Calcular el peso máximo con los valores cargados
+        actualizarResultadoAbacoOge();
+      }
+      
+      // Agregar eventos de cambio a los inputs
+      document.getElementById("T°").addEventListener("input", actualizarResultadoAbacoOge);
+      document.getElementById("Alt").addEventListener("input", actualizarResultadoAbacoOge);
+      
+      // Ejecutar al cargar la página
+      cargarValoresGuardadosAbacoOge();
+        // Datos de ejemplo del ábaco (simplificados)
+    
