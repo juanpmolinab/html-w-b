@@ -54,6 +54,7 @@ input{
                 margin: 0%; 
                 text-align: center;
                 border-radius: 10px;
+                
             }
             .primero{
                 flex: 1;
@@ -69,6 +70,11 @@ input{
                 border: solid 2px aliceblue;
                 flex: 1;
             }
+
+                .pilot{
+                        font-size: 40%;
+                }
+
             .tercero{
                 grid-area: 1/3/2/4;
                 border: solid 2px  aliceblue;
@@ -218,6 +224,7 @@ input{
                                                                                     flex: 1; /* El input ocupará el espacio disponible */
                                                                                     min-width: 50px; /* Ancho mínimo para evitar que se haga demasiado pequeño */
                                                                                     margin: 0;
+                                                                                    font-size: 100%;
                                                                                 }
                                                                         .pax-value-numb{
                                                                             grid-area: 1 / 2 / 2 / 3;
@@ -455,7 +462,7 @@ input{
                                                                 border: none;
                                                                 text-align: center;
                                                                 text-transform: uppercase;
-                                                                width: 50px;
+                                                                width: 30px;
                                                                 margin: 0;
                                                                 display: flex;
                                                 }
@@ -465,7 +472,6 @@ input{
                                                                 text-transform: uppercase;
                                                                 width: 40px;
                                                                 margin: 0;
-                                                                
                                                 }
                                 .fuel-value-3{
                                     padding-bottom: 15px;
@@ -479,11 +485,11 @@ input{
                                                             
                                                         }
                                                         #valor-fuel, #valor-fuelLand{
-                                                            
                                                             top: 0;
+                                                            width: 20%;
                                                         }
                 .landFuel{
-                    grid-area: 4 / 1 / span 3 / span 3;
+                    grid-area: 4 / 1 / span 3/ span 3;
                     display: grid;
                     grid-template-columns: 1fr; 
                     grid-template-rows: repeat(3, 1fr);
@@ -497,7 +503,7 @@ input{
                                                     border: none;
                                                     text-align:center;
                                                     text-transform: uppercase;
-                                                    width: 50px;
+                                                    width: 40px;
                                                     margin: 0;
                                                     
                                              }
@@ -509,7 +515,7 @@ input{
                                     display: flex;
                                 }
                 .stank{
-                    grid-area: 1 / 4 / span 6 / span 1;
+                    grid-area: 1 / 4/ span 6 / span 1;
                     
                     position: relative;
                 }
@@ -659,6 +665,10 @@ input{
                    grid-template-columns:1fr; 
                    grid-template-rows: repeat(3, 1fr);
                 }
+
+                .name-value{
+                    font-size: small ;
+                }
                             .pax-position-info{
                                 grid-area: 1 / 1 / 2 / 2;
                             }
@@ -668,6 +678,7 @@ input{
                             }
                             .pax-position-name{
                                 grid-area: 3 / 1 / 4 / 3;
+                                
                             }
 
                             @media only screen and (max-width: 668px){
@@ -679,9 +690,10 @@ input{
 
                 .hel-sillas-delantera{
                     position: relative;
+
                 }
                  
-                       .fo{
+                        .fo{
                             width: 30px;
                             height: 40px;
                             position: absolute;
@@ -715,7 +727,7 @@ input{
                             top: -20%;
                             
                         }
-                    }           
+                    }        
 
     .hel-in-tercero {
         grid-area: 1 / 5 / span 6 / span 2;
@@ -755,6 +767,9 @@ input{
 
                    
 }
+
+/* diseño d la pagina de manifest */
+
 
 .mainManifest{
     display: grid;
@@ -854,25 +869,157 @@ input{
     }
 
                     .title2LM1{
-                        grid-area: 1 / 1 / span 2 / span 1;
+                        grid-area: 1 / 1 / span 1 / span 1;
                         background-color:white;
                         color: black;
                     }
                     .title2LM2{
-                        grid-area: 1 / 2 / span 2 / span 1;
+                        grid-area: 1 / 2 / span 1 / span 1;
                         background-color:white;
                         color:black;
                     }
                     .title2LM3{
-                        grid-area: 1 / 3 / span 2 / span 1;
+                        grid-area: 1 / 3 / span 1 / span 1;
                         background-color:white;
                         color: black;
                     }
                     .title2LM4{
-                        grid-area: 1 / 4 / span 2 / span 1;
+                        grid-area: 1 / 4 / span 1 / span 1;
                         background-color:white;
                         color:black;
                     }
+
+                    .regist1{
+                        background-color:white;
+                        color:black;
+                    }
+                    #regist_2{
+                        background-color:white;
+                        color:black;
+                    }
+                    .date1{
+                        background-color:white;
+                        color:black;
+                    }
+                    #date_2{
+                        background-color:white;
+                        color:black;
+                    }
+                    .from1{
+                        background-color:white;
+                        color:black;
+                    }
+                    #from_2{
+                        background-color:white;
+                        color:black;
+                    }
+                    .to1{
+                        background-color:white;
+                        color:black;
+                    }
+                    #to_2{
+                        background-color:white;
+                        color:black;
+                    }
+
+                    
+                .slrr1{
+                    grid-area: 2 / 1 / span 1 / span 1;
+                                border: solid 1px black;
+                                background-color:white;
+                                color:black;
+                                align-items: center;
+                                justify-content: center;
+                }
+                .slrr2{
+                    grid-area: 2 / 2 / span 1 / span 1;
+                                border: solid 1px black;
+                                background-color:white;
+                                color:black;
+                                align-items: center;
+                                justify-content: center;
+                                
+                }
+                .slrr3{
+                    grid-area: 2 / 3 / span 1 / span 1;
+                                border: solid 1px black;
+                                background-color:white;
+                                color:black;
+                                align-items: center;
+                                justify-content: center;
+                }
+                .slrr4{
+                    grid-area: 2 / 4 / span 1 / span 1;
+                                border: solid 1px black;
+                                background-color:white;
+                                color:black;
+                                align-items: center;
+                                justify-content: center;
+                }
+
+                .hourA{
+                    background-color:white;
+                    color:black;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                
+                .hourB{
+                    background-color:white;
+                    color:black;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .flightTTime{
+                    background-color:white;
+                    color:black;
+                    display: flex;
+                }
+                .ft_2{
+                    background-color:white;
+                    color:black;
+                }
+                .parametersA{
+                    background-color:white;
+                    color:black;
+                    display: flex;
+                }
+                .paramA_2{
+                    background-color:white;
+                    color:black;
+                }
+                .parametersB{
+                    background-color:white;
+                    color:black;
+                    display: flex;
+                }
+                .paramB_2{
+                    background-color:white;
+                    color:black;
+                }
+                .performanceA{
+                    background-color:white;
+                    color:black;
+                    display: flex;
+                }
+                .perfA_2{
+                    background-color:white;
+                    color:black;
+                    display: flex;
+                }
+                .performanceB{
+                    background-color:white;
+                    color:black;
+                    display: flex;
+                }
+                .perfB_2{
+                    background-color:white;
+                    color:black;
+                    display: flex;
+                }
+                
     
                     .weightDataLM{
                         gap: 0px;
@@ -1132,7 +1279,7 @@ input{
                                         background-color:white;
                                         color:black;
                                     }
-                                    .uFuelLM{ display: grid;
+                                    .lFuelLM{ display: grid;
                                         grid-template-columns: repeat(10, 1fr);
                                         grid-template-rows: repeat(1, 1fr);
                                         grid-area: 13 / 1 / span 1 / span 9;
@@ -1140,7 +1287,7 @@ input{
                                         background-color:white;
                                         color:black;
                                     }
-                                    .lFuelLM{ display: grid;
+                                    .lWeightLM{ display: grid;
                                         grid-template-columns: repeat(10, 1fr);
                                         grid-template-rows: repeat(1, 1fr);
                                         grid-area: 14 / 1 / span 1 / span 9;
@@ -1148,14 +1295,7 @@ input{
                                         background-color:white;
                                         color:black;
                                     }
-                                    .lWeightLM{ display: grid;
-                                        grid-template-columns: repeat(10, 1fr);
-                                        grid-template-rows: repeat(1, 1fr);
-                                        grid-area: 15 / 1 / span 1 / span 9;
-                                        border: solid 2px blue;
-                                        background-color:white;
-                                        color:black;
-                                    }
+                                    
                 
                 
     .signLM{
@@ -1180,56 +1320,31 @@ input{
                                 color:black;
                 }
 
-    
-    .flightDataLM{
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(5, 1fr);
-        grid-area: 7 / 10 / span 5 / span 4;
-        border: solid 1px black;
-        background-color:white;
-        color:black;
-    }
-                .flightTitle{
-                    grid-area: 1 / 1 / span 1 / span 2;
-                                border: solid 1px black;
-                                background-color:white;
-                                color:black;
-                }
-                .slrr1{
-                    grid-area: 2 / 1 / span 1 / span 2;
-                                border: solid 1px black;
-                                background-color:white;
-                                color:black;
-                }
-                .slrr2{
-                    grid-area: 3 / 1 / span 1 / span 2;
-                                border: solid 1px black;
-                                background-color:white;
-                                color:black;
-                }
-                .slrr3{
-                    grid-area: 4 / 1 / span 1 / span 2;
-                                border: solid 1px black;
-                                background-color:white;
-                                color:black;
-                }
-                .slrr4{
-                    grid-area: 5 / 1 / span 1 / span 2;
-                                border: solid 1px black;
-                                background-color:white;
-                                color:black;
-                }
-                
     .grafic1LM{
         
-        grid-area: 12 / 10 / span 3 / span 4;
-        border: solid 1px black;
-        background-color:white;
-        color:black;
+        grid-area: 7 / 10 / span 7 / span 4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 400px; /* Ajusta la altura según necesidad */
+        background-color: white;
+        border: 2px solid black;
+        position: relative;
     }
+
+            #chartManifest {
+                justify-content: center; 
+                align-items: center;
+                height: 99%;
+                width: 99%;
+                background-color: white;
+                display: block !important;
+                opacity: 1 !important;
+
+            }
+
     .grafic2LM{
-        grid-area: 15 / 10 / span 2 / span 4;
+        grid-area: 14 / 10 / span 2 / span 4;
         border: solid 1px black;
         background-color:white;
         color:black;
@@ -1238,10 +1353,11 @@ input{
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(6, 1fr);
-        grid-area: 17 / 10 / span 5 / span 4;
+        grid-area: 16 / 10 / span 5 / span 4;
         border: solid 1px black;
         background-color:white;
         color:black;
+        
     }
 
                 .manTitle{
@@ -1249,6 +1365,7 @@ input{
                     border: solid 1px black;
                                 background-color:white;
                                 color:black;
+                                
                 }
                 .slrrr1{
                     grid-area: 2 / 1 / span 1 / span 2;
@@ -1280,6 +1397,30 @@ input{
                     background-color:white;
                     color:black;
                 }
+
+                .man1{
+                    background-color:white;
+                    color:black;
+                }
+                .man2{
+                    background-color:white;
+                    color:black;
+                }
+                .man3{
+                    background-color:white;
+                    color:black;
+                }
+                .man4{
+                    background-color:white;
+                    color:black;
+                }
+                .man5{
+                    background-color:white;
+                    color:black;
+                }
+
+
+            
     .butoons{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -1289,6 +1430,7 @@ input{
         color:black;
     }
 
+   
                 .slrrrr1{
                     border: solid 1px black;
                     background-color:white;
@@ -1316,5 +1458,4 @@ input{
 
 
                 
-
 
