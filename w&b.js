@@ -1,22 +1,13 @@
-
-
 document.addEventListener("DOMContentLoaded", function() {
     // ------------------------
     // 1. Configuración Inicial
     // ------------------------
-
-    const maxValue = 580;
+    const maxValue = 560;
     const maxHeightPercentage = 70;
-    let myChart = null; // Variable global para almacenar el gráfico
-
-
-
+  
     // ------------------------
     // 2. Función guardarEnLocalStorage
     // ------------------------
-
-
-    
     const elementos = [
         { sliderId: 'escala-sf', spanId: 'valor-sf' },
         { sliderId: 'escala-srl', spanId: 'valor-srl' },
@@ -26,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function() {
         { sliderId: 'escala-g', spanId: 'valor-g' },
         { sliderId: 'escala-fuel', spanId: 'valor-fuel' },
         { sliderId: 'escala-fuelLand', spanId: 'valor-fuelLand' }
-        
     ];
     
     // Recorre cada elemento y configura el evento y almacenamiento en localStorage
@@ -258,184 +248,218 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('consumption').addEventListener('input', calculateReserve);
     }
 
-    
 
-    // 4.4. Calcular Suma Total
+    function saveHelicopterSelection() {
+        // Obtener la opción seleccionada en el <select>
+        const seleccion = document.getElementById("optionsHelicopter").value;
+    
+        // Definir los valores de weight y arm para cada opción
+        let weight = 0;
+        let arm = 0;
+    
+        if (seleccion === "weightH1") {
+            weight = 2360; // Valor por defecto
+            arm = 176.1;
+        } else if (seleccion === "weightH2") {
+            weight = 2344; // Valor por defecto
+            arm = 177;
+        }
+    
+        // Guardar los valores en localStorage para persistencia
+        localStorage.setItem("selectedHelicopter", seleccion);
+        localStorage.setItem("selectedWeight", weight);
+        localStorage.setItem("selectedArm", arm);
+        localStorage.setItem("armCGH", arm); // Guardamos el armCGH1 con el valor de arm
+    
+        // Actualizar las funciones con los nuevos valores
+        actualizarSuma();
+        actualizarSumaArm();
+    }
     
     function actualizarSuma() {
         const elementos = ['escala-sf', 'escala-srl', 'escala-src', 'escala-ps', 'escala-srr', 'escala-g', 'escala-fuel'];
-        const valores = elementos.map(id => parseInt(document.getElementById(`${id}`).value) || 0);
-        const heli = parseFloat(localStorage.getItem('weightH1')) || 0;
-
-        const sumaTotal = valores.reduce((acc, val) => acc + val, 0) + heli;
+        const valores = elementos.map(id => parseInt(document.getElementById(id).value) || 0);
+    
+        // Obtener el peso del helicóptero desde localStorage
+        const heliWeight = parseFloat(localStorage.getItem("selectedWeight")) || 0;
+    
+        // Sumar los valores
+        const sumaTotal = valores.reduce((acc, val) => acc + val, 0) + heliWeight;
         document.getElementById('takeoffw').innerText = sumaTotal;
-
+    
         const fuelLand = parseInt(document.getElementById('escala-fuelLand').value) || 0;
         const fuelWeight = parseInt(document.getElementById('escala-fuel').value) || 0;
-
+    
         const landingw = sumaTotal - (fuelWeight - fuelLand);
         const zerow = sumaTotal - fuelWeight;
-
+    
         document.getElementById('landingw').innerText = landingw;
         document.getElementById('zerow').innerText = zerow;
+       
     }
-
-    // 4.5. Calcular Suma Arm
+    
+    
     function actualizarSumaArm() {
         const elementos = [
             { id: 'escala-sf', armKey: 'arms1' },
             { id: 'escala-srl', armKey: 'arms3' },
-            { id: 'escala-src', armKey: 'arms4' },
             { id: 'escala-ps', armKey: 'arms2' },
             { id: 'escala-srr', armKey: 'arms5' },
             { id: 'escala-g', armKey: 'arms6' }
         ];
-
+    
         let sumaTotalArmUsable = 0;
         let sumaMomentUsable = 0;
-
+    
         elementos.forEach(el => {
-            const valor = parseInt(document.getElementById(`${el.id}`).value) || 0;
+            const valor = parseInt(document.getElementById(el.id).value) || 0;
             const arm = parseFloat(localStorage.getItem(el.armKey)) || 0;
             sumaTotalArmUsable += valor;
             sumaMomentUsable += valor * arm;
         });
-
+    
         const usableFuel = parseInt(document.getElementById('escala-fuel').value) || 0;
         const fuelData = [
-            { weight: 0, arm: 164.7 },
-            { weight: 34, arm: 167.1 },
-            { weight: 68, arm: 167.6 },
-            { weight: 83, arm: 167.7 },
-            { weight: 102, arm: 167.5 },
-            { weight: 136, arm: 167.0 },
-            { weight: 170, arm: 166.7 },
-            { weight: 204, arm: 166.5 },
-            { weight: 238, arm: 166.4 },
-            { weight: 272, arm: 166.3 },
-            { weight: 306, arm: 166.2 },
-            { weight: 340, arm: 166.1 },
-            { weight: 374, arm: 166.1 },
-            { weight: 408, arm: 166.1 },
-            { weight: 442, arm: 166.0 },
-            { weight: 476, arm: 166.0 },
-            { weight: 510, arm: 166.0 },
-            { weight: 544, arm: 166.0 },
+            { weight: 0, arm: 164.7 }, { weight: 34, arm: 167.1 }, { weight: 68, arm: 167.6 },
+            { weight: 83, arm: 167.7 }, { weight: 102, arm: 167.5 }, { weight: 136, arm: 167.0 },
+            { weight: 170, arm: 166.7 }, { weight: 204, arm: 166.5 }, { weight: 238, arm: 166.4 },
+            { weight: 272, arm: 166.3 }, { weight: 306, arm: 166.2 }, { weight: 340, arm: 166.1 },
+            { weight: 374, arm: 166.1 }, { weight: 408, arm: 166.1 }, { weight: 442, arm: 166.0 },
+            { weight: 476, arm: 166.0 }, { weight: 510, arm: 166.0 }, { weight: 544, arm: 166.0 },
             { weight: 577, arm: 166.0 }
         ];
-
         const matchingUsableFuel = fuelData.find(data => usableFuel <= data.weight) || fuelData[fuelData.length - 1];
         const momentUsableFuel = usableFuel * matchingUsableFuel.arm;
+        const usableFuelArm = matchingUsableFuel.arm; // Guardamos el arm correspondiente al usableFuel
+        
+        // Guardar en localStorage para usar en otra función
+        localStorage.setItem("usableFuelArm", usableFuelArm);
+        
 
-        const heli = parseFloat(localStorage.getItem('weightH1')) || 0;
-        const armCGH1 = parseFloat(localStorage.getItem('armCGH1')) || 0;
-        const mHeli = heli * armCGH1;
 
-        sumaTotalArmUsable += usableFuel + heli;
-        sumaMomentUsable += momentUsableFuel + mHeli;
-
+        const heliWeight = parseFloat(localStorage.getItem("selectedWeight")) || 0;
+        const armCGH = parseFloat(localStorage.getItem("armCGH")) || 0; // Tomamos el arm guardado en localStorage
+        const momentHeli = heliWeight * armCGH;
+    
+        sumaTotalArmUsable += usableFuel + heliWeight;
+        sumaMomentUsable += momentUsableFuel + momentHeli;
+    
         const armTotalUsable = sumaMomentUsable / sumaTotalArmUsable || 0;
         document.getElementById('takeoffArm').innerText = armTotalUsable.toFixed(1);
-
+    
         // Calcular Landing Arm
         const fuelLand = parseInt(document.getElementById('escala-fuelLand').value) || 0;
         const matchingFuelLand = fuelData.find(data => fuelLand <= data.weight) || fuelData[fuelData.length - 1];
         const momentFuelLand = fuelLand * matchingFuelLand.arm;
-
+        const landingFuelArm = matchingFuelLand.arm; // Guardamos el arm correspondiente al usableFuel
+        
+        // Guardar en localStorage para usar en otra función
+        localStorage.setItem("landingFuelArm", landingFuelArm);
+    
         const sumaTotalArmLand = sumaTotalArmUsable - usableFuel + fuelLand;
         const sumaMomentLand = sumaMomentUsable - momentUsableFuel + momentFuelLand;
         const armTotalLand = sumaMomentLand / sumaTotalArmLand || 0;
-
+    
         document.getElementById('landingArm').innerText = armTotalLand.toFixed(1);
-
+    
         // Calcular Zero Arm
         const sumaTotalArmZero = sumaTotalArmUsable - usableFuel;
         const sumaMomentZero = sumaMomentUsable - momentUsableFuel;
         const armTotalZero = sumaMomentZero / sumaTotalArmZero || 0;
-
+    
         document.getElementById('zeroArm').innerText = armTotalZero.toFixed(1);
     }
+    
+    document.getElementById("optionsHelicopter").addEventListener("change", function() {
+        saveHelicopterSelection();
+    });
+
+
+    
+    function initializePage() {
+        // Restaurar la opción seleccionada
+        const selectedHelicopter = localStorage.getItem("selectedHelicopter");
+        if (selectedHelicopter) {
+            document.getElementById("optionsHelicopter").value = selectedHelicopter;
+        }
+    
+        // Restaurar valores almacenados y actualizar las sumas
+        actualizarSuma();
+        actualizarSumaArm();
+    }
+    
+    // Llamar a initializePage cuando la página se carga
+    window.onload = initializePage;
+    
 
     // 4.6. Repetir Nombre del Piloto
-
     function syncPilotFields() {
         const pilot = document.getElementById('pilot');
         const pilot1 = document.getElementById('PS');
     
-        // Función para sincronizar ambos campos y guardar el valor en localStorage
+        if (!pilot || !pilot1) return; // Evita errores si los elementos no existen
+    
+        // Función para sincronizar ambos campos y guardar en localStorage
         function updateBothFields(value) {
             pilot.value = pilot1.value = value;
             localStorage.setItem('pilotValue', value);
         }
     
-        // Escuchar cambios en "pilot" y sincronizar con "pilot1"
+        // Sincronizar valores en tiempo real
         pilot.addEventListener('input', () => updateBothFields(pilot.value));
-    
-        // Escuchar cambios en "pilot1" y sincronizar con "pilot"
         pilot1.addEventListener('input', () => updateBothFields(pilot1.value));
     
-        // Al cargar la página, recuperar el valor guardado en localStorage
-        window.addEventListener('load', () => {
-            const savedValue = localStorage.getItem('pilotValue');
-            if (savedValue) {
-                pilot.value = pilot1.value = savedValue;
-            }
-        });
+        // Restaurar valores guardados al cargar la página
+        const savedValue = localStorage.getItem('pilotValue');
+        if (savedValue) {
+            pilot.value = pilot1.value = savedValue;
+        }
     }
-
+    
+    // Ejecutar la función automáticamente
+    syncPilotFields();
     
     // ------------------------
     // 7. Función de Graficación
     // ------------------------
-
+    
+    
+    let myChart1;
+    let myChart2;
+    
     function grafic() {
         // Obtener valores para el gráfico
-        const takeoffW = parseFloat(document.getElementById('takeoffw').textContent) || 0;
-        const landingW = parseFloat(document.getElementById('landingw').textContent) || 0;
-        const zeroW = parseFloat(document.getElementById('zerow').textContent) || 0;
-
-        const takeoffArm = parseFloat(document.getElementById('takeoffArm').textContent) || 0;
-        const landingArm = parseFloat(document.getElementById('landingArm').textContent) || 0;
-        const zeroArm = parseFloat(document.getElementById('zeroArm').textContent) || 0;
-
+        const takeoffW = parseFloat(document.getElementById('takeoffw')?.textContent) || 0;
+        const landingW = parseFloat(document.getElementById('landingw')?.textContent) || 0;
+        const zeroW = parseFloat(document.getElementById('zerow')?.textContent) || 0;
+    
+        const takeoffArm = parseFloat(document.getElementById('takeoffArm')?.textContent) || 0;
+        const landingArm = parseFloat(document.getElementById('landingArm')?.textContent) || 0;
+        const zeroArm = parseFloat(document.getElementById('zeroArm')?.textContent) || 0;
+    
         // Datos para el gráfico de dispersión
         const newData = [
             { x: takeoffArm, y: takeoffW, backgroundColor: 'orange', borderColor: 'orange', label: 'Total' },
             { x: landingArm, y: landingW, backgroundColor: 'green', borderColor: 'green', label: 'Landing' },
             { x: zeroArm, y: zeroW, backgroundColor: 'blue', borderColor: 'blue', label: 'Zero' }
         ];
-
+    
         // Puntos del polígono (zona límite)
         const polygonData = [
-            { x: 171.5, y: 2234 },
-            { x: 170, y: 2234 },
-            { x: 161.2, y: 2500 },
-            { x: 161.2, y: 3200 },
-            { x: 161.6, y: 3680 },
-            { x: 169.9, y: 3680 },
-            { x: 171.5, y: 2600 },
-            { x: 171.5, y: 2234 }
+            { x: 171.5, y: 2234 }, { x: 170, y: 2234 }, { x: 161.2, y: 2500 }, { x: 161.2, y: 3200 },
+            { x: 161.6, y: 3680 }, { x: 169.9, y: 3680 }, { x: 171.5, y: 2600 }, { x: 171.5, y: 2234 }
         ];
-
+    
         const polygonExternalLoad = [
-            { x: 161.6, y: 3680 },
-            { x: 162.2, y: 4475 },
-            { x: 169, y: 4475 },
-            { x: 169.9, y: 3680 },
-            { x: 161.6, y: 3680 }
+            { x: 161.6, y: 3680 }, { x: 162.2, y: 4475 }, { x: 169, y: 4475 },
+            { x: 169.9, y: 3680 }, { x: 161.6, y: 3680 }
         ];
-
+    
         const polygonAftCG = [
-            { x: 171.5, y: 2234 },
-            { x: 170, y: 2234 },
-            { x: 168.4, y: 3680 },
-            { x: 168.1, y: 4475 },
-            { x: 169, y: 4475 },
-            { x: 169.9, y: 3680 },
-            { x: 171.5, y: 2600 },
-            { x: 171.5, y: 2234 }
+            { x: 171.5, y: 2234 }, { x: 170, y: 2234 }, { x: 168.4, y: 3680 }, { x: 168.1, y: 4475 },
+            { x: 169, y: 4475 }, { x: 169.9, y: 3680 }, { x: 171.5, y: 2600 }, { x: 171.5, y: 2234 }
         ];
-
+    
         // Datos del gráfico
         const data = {
             datasets: [
@@ -487,7 +511,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             ]
         };
-
+    
         const config = {
             type: 'scatter',
             data: data,
@@ -504,59 +528,67 @@ document.addEventListener("DOMContentLoaded", function() {
                         position: 'bottom',
                         min: 158,
                         max: 174,
-                        title: {
-                            display: true,
-                            text: 'CG (inches)'
-                        }
+                        title: { display: true, text: 'CG (inches)' }
                     },
                     x1: {
                         type: 'linear',
                         position: 'top',
                         min: 4022,
                         max: 4420,
-                        title: {
-                            display: true,
-                            text: 'CG (milimeters)'
-                        }
+                        title: { display: true, text: 'CG (milimeters)' }
                     },
                     y: {
                         min: 2000,
                         max: 4800,
-                        title: {
-                            display: true,
-                            text: 'Weight (lbs)'
-                        }
+                        title: { display: true, text: 'Weight (lbs)' }
                     },
                     y1: {
                         position: 'right',
                         min: 910,
                         max: 2175,
-                        title: {
-                            display: true,
-                            text: 'Weight (kg)'
-                        }
+                        title: { display: true, text: 'Weight (kg)' }
                     }
-                },
-                aspectRatio: 1
+                }
             }
         };
-
-        // Crear o actualizar el gráfico
-        if (myChart) {
-            myChart.data.datasets[0].data = newData;
-            myChart.data.datasets[1].data = polygonData;
-            myChart.data.datasets[2].data = polygonExternalLoad;
-            myChart.data.datasets[3].data = polygonAftCG;
-            myChart.update();
-        } else {
-            const ctx = document.getElementById('myChart').getContext('2d');
-            myChart = new Chart(ctx, config);
+    
+        // Función para crear o actualizar un gráfico en un canvas específico
+        function createOrUpdateChart(canvasId, chartVar) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return chartVar; // Si no existe el canvas, salir
+    
+            const ctx = canvas.getContext('2d');
+    
+            if (chartVar) {
+                chartVar.data.datasets[0].data = newData;
+                chartVar.data.datasets[1].data = polygonData;
+                chartVar.data.datasets[2].data = polygonExternalLoad;
+                chartVar.data.datasets[3].data = polygonAftCG;
+                chartVar.update();
+            } else {
+                chartVar = new Chart(ctx, config);
+            }
+    
+            return chartVar;
         }
+    
+        // Crear o actualizar gráficos en ambos canvas
+        myChart1 = createOrUpdateChart('chartManifest', myChart1);
+        myChart2 = createOrUpdateChart('myChart', myChart2);
     }
+    
+    // Llamar a la función después de que el DOM haya cargado
+    document.addEventListener('DOMContentLoaded', grafic);
 
-    // ------------------------
-    // 8. Función para Calcular Peso
-    // ------------------------
+    function esperarYGraficar() {
+    setTimeout(() => {
+        if (document.getElementById('chartManifest')) {
+            grafic();
+        }
+    }, 500);  // Espera medio segundo antes de ejecutar la función
+}
+
+document.addEventListener('DOMContentLoaded', esperarYGraficar);
 
     // ------------------------
     // 9. Agregar Event Listeners Adicionales
@@ -591,12 +623,7 @@ document.addEventListener("DOMContentLoaded", function() {
             grafic();
             
         });
-
-        
-        
-
         // Calcular peso basado en Altitud y Temperatura
-        
     }
 
     // ------------------------
@@ -659,8 +686,11 @@ document.addEventListener("DOMContentLoaded", function() {
         for (let i = 1; i <= 6; i++) {
             let weightH = parseFloat(document.getElementById(`weightH${i}`).value) || 0;
             let armCGH = parseFloat(document.getElementById(`armCGH${i}`).value) || 0;
+            let lArmCGH = parseFloat(document.getElementById(`lArmCGH${i}`).value) || 0;
+          
             localStorage.setItem(`weightH${i}`, weightH);
             localStorage.setItem(`armCGH${i}`, armCGH);
+            localStorage.setItem(`lArmCGH${i}`, lArmCGH);
         }
     
         for (let i = 1; i <= 19; i++) {
@@ -693,30 +723,6 @@ function guardarValorDeslizador(idDeslizador, idSpan, keyLocalStorage) {
             valorSpan.textContent = valor; // Actualiza el texto del span en index.html
         }
     }
-}
-
-// Función para cargar y mostrar los valores guardados en manifest.html
-function cargarValoresDeslizadores() {
-    const configuraciones = [
-        { key: 'paxValue', selector: '.p2.slr2' },
-        { key: 'sfValue', selector: '.cp2' },
-        { key: 'srlValue', selector: '.l2' },
-        { key: 'srcValue', selector: '.c2' },
-        { key: 'srrValue', selector: '.r2' },
-        { key: 'gValue', selector: '.cargo2' },
-        { key: 'fuelValue', selector: '.mF2' },
-        { key: 'fuelLandValue', selector: '.lF2' }
-    ];
-
-    configuraciones.forEach(config => {
-        const destinoDiv = document.querySelector(config.selector);
-        const valorGuardado = localStorage.getItem(config.key);
-
-        if (destinoDiv && valorGuardado !== null) {
-            destinoDiv.textContent = valorGuardado; // Muestra el valor en manifest.html
-            calcularMomentos(); // Llama a la función de cálculo cuando el valor se actualiza
-        }
-    });
 }
 
 // Función para inicializar los valores de los deslizadores en index.html
@@ -794,10 +800,11 @@ const elementosConfig = {
     r: { valor1: ".r2", valor2: ".r3", resultado1: ".r4", valor3: ".r5", resultado2: ".r6" },
     cargo: { valor1: ".cargo2", valor2: ".cargo3", resultado1: ".cargo4", valor3: ".cargo5", resultado2: ".cargo6" },
     hook: { valor1: ".hook2", valor2: ".hook3", resultado1: ".hook4", valor3: ".hook5", resultado2: ".hook6" },
+    zW: { valor1: ".zW1", valor2: ".zW3", resultado1: ".zW4", valor3: ".zW5", resultado2: ".zW6" },
     mF: { valor1: ".mF2", valor2: ".mF3", resultado1: ".mF4", valor3: ".mF5", resultado2: ".mF6" },
-    uF: { valor1: ".uF2", valor2: ".uF3", resultado1: ".uF4", valor3: ".uF5", resultado2: ".uF6" },
+    toW: { valor1: ".TW2", valor2: ".TW3", resultado1: ".TW4", valor3: ".TW5", resultado2: ".TW6" },
     lF: { valor1: ".lF2", valor2: ".lF3", resultado1: ".lF4", valor3: ".lF5", resultado2: ".lF6" },
-    
+    lW: { valor1: ".LW2", valor2: ".LW3", resultado1: ".LW4", valor3: ".LW5", resultado2: ".LW6" },
 };
 
 
@@ -821,15 +828,23 @@ function calcularMomento(config) {
 
 // Función para transferir los valores de localStorage a manifest.html
 function transferirValores() {
+
+    
+
     const configuraciones = [
-        { key: 'arms0Value', selector: '.blanco2' },
+        { key: 'armCGH', selector: '.blanco3' },
+        { key: 'lArmCGH', selector: '.blanco5' },
         { key: 'arms1Value', selector: '.cp3' },
         { key: 'arms2Value', selector: '.p3' },
         { key: 'arms3Value', selector: '.l3' },
         { key: 'arms4Value', selector: '.c3' },
         { key: 'arms5Value', selector: '.r3' },
         { key: 'arms6Value', selector: '.cargo3' },
-        { key: 'arms7Value', selector: '.hook3' }
+        { key: 'arms7Value', selector: '.hook3' },
+        { key: 'usableFuelArm', selector: '.mF3' },
+        { key: 'landingFuelArm', selector: '.lF3' },
+        
+
     ];
 
     configuraciones.forEach(config => {
@@ -861,32 +876,78 @@ function calcularMomentos() {
     Object.values(elementosConfig).forEach(config => calcularMomento(config));
 }
 
-// Función para guardar valores en localStorage desde index.html
-function guardarValores1() {
-    const configuraciones = [
-        { idSource: 'f1', key: 'F1Value' },
-        { idSource: 'RL', key: 'RLValue' },
-        { idSource: 'CC', key: 'CCValue' },
-        { idSource: 'PS', key: 'PSValue' },
-        { idSource: 'R', key: 'RValue' }
-    ];
 
-    configuraciones.forEach(config => {
-        const inputElement = document.getElementById(config.idSource);
-        if (inputElement) {
-            localStorage.setItem(config.key, inputElement.value); // Guarda el valor del input en localStorage
-            console.log(`Guardado ${config.key}: ${inputElement.value}`);
-        }
-    });
+
+// 🔹 Función para guardar valores en localStorage cuando el usuario escribe en los inputs
+class ConfigManager {
+    constructor(configs) {
+        this.configs = configs;
+    }
+
+    guardarValores() {
+        this.configs.forEach(({ idSource, key }) => {
+            const inputElement = document.getElementById(idSource);
+            if (inputElement) {
+                inputElement.addEventListener('input', () => {
+                    localStorage.setItem(key, inputElement.value);
+                    console.log(`Guardado ${key}: ${inputElement.value}`);
+                });
+            }
+        });
+    }
+
+    restaurarValores() {
+        this.configs.forEach(({ idSource, key }) => {
+            const inputElement = document.getElementById(idSource);
+            const valorGuardado = localStorage.getItem(key);
+            
+            if (inputElement && valorGuardado !== null) {
+                inputElement.value = valorGuardado;
+                console.log(`Restaurado ${key}: ${valorGuardado}`);
+            }
+        });
+    }
 }
 
-// Función para transferir valores de localStorage a manifest.html
+// 🔹 Configuración centralizada
+const configuraciones = [
+    { idSource: 'optionsHelicopter', key: 'opHeli' },
+    { idSource: 'From', key: 'fromValue' },
+    { idSource: 'To', key: 'toValue' },
+    { idSource: 'Alt', key: 'AltValue' },
+    { idSource: 'T°', key: 'T°Value' },
+    { idSource: 'oge', key: 'ogeValue' },
+    { idSource: 'ige', key: 'igeValue' },
+    { idSource: 'PS', key: 'PSValue' },
+    { idSource: 'f1', key: 'F1Value' },
+    { idSource: 'RL', key: 'RLValue' },
+    { idSource: 'CC', key: 'CCValue' },
+    { idSource: 'R', key: 'RValue' }
+];
+
+// 🔹 Instanciación de la clase
+const configManager = new ConfigManager(configuraciones);
+
+// 🔹 Ejecutar funciones al cargar el DOM
+document.addEventListener('DOMContentLoaded', () => {
+    configManager.guardarValores();
+    configManager.restaurarValores();
+});
+
+// 🔹 Función para transferir valores de `localStorage` a `manifest.html`
 function transferirValores1() {
     const configuraciones = [
-        { key: 'F1Value', selector: '.man1' },
-        { key: 'RLValue', selector: '.man2' },
-        { key: 'CCValue', selector: '.man3' },
-        { key: 'PSValue', selector: '.man4' },
+        { key: 'opHeli', selector: 'regist1' },
+        { key: 'fromValue', selector: '.from1' },
+        { key: 'toValue', selector: '.to1' },
+        { key: 'AltValue', selector: '.paramA_2' },
+        { key: 'T°Value', selector: '.paramB_2' },
+        { key: 'ogeValue', selector: '.perfA_2' },
+        { key: 'igeValue', selector: '.perfB_2' },
+        { key: 'PSValue', selector: '.man1' },
+        { key: 'F1Value', selector: '.man2' },
+        { key: 'RLValue', selector: '.man3' },
+        { key: 'CCValue', selector: '.man4' },
         { key: 'RValue', selector: '.man5' }
     ];
 
@@ -901,20 +962,19 @@ function transferirValores1() {
     });
 }
 
-// Detectar la página actual y ejecutar la función correspondiente
-window.addEventListener('load', () => {
+// 🔹 Detectar la página actual y ejecutar la función correspondiente
+window.addEventListener('DOMContentLoaded', () => {
     const url = window.location.href;
     const isIndexPage = url.includes('index.html');
     const isManifestPage = url.includes('manifest.html');
 
     if (isIndexPage) {
-        guardarValores1(); // Guarda valores al cargar index.html
+        restaurarValores1();  // ✅ Restaurar valores en los inputs al cargar `index.html`
+        guardarValores1();    // ✅ Escuchar cambios en los inputs y guardarlos en `localStorage`
     } else if (isManifestPage) {
-        transferirValores1(); // Transfiere valores al cargar manifest.html
+        transferirValores1(); // ✅ Transferir valores a `manifest.html`
     }
 });
-
-
 
 
 
@@ -981,17 +1041,20 @@ const abaco = {
   function actualizarResultadoAbaco() {
     const temperatura = parseFloat(document.getElementById("T°").value);
     const altitud = parseFloat(document.getElementById("Alt").value);
-  
+
     if (!isNaN(temperatura) && !isNaN(altitud)) {
-      const pesoMaximo = calcularPesoMaximoIog(temperatura, altitud);
-      document.getElementById("ige").value = pesoMaximo;
-  
-      // Guardar valores en localStorage
-      localStorage.setItem("T°", temperatura);
-      localStorage.setItem("Alt", altitud);
+        const pesoMaximo = calcularPesoMaximoIog(temperatura, altitud);
+        document.getElementById("ige").value = pesoMaximo;
+        
+        // Forzar el evento input simula la entrada manual
+        document.getElementById("ige").dispatchEvent(new Event('input'));
+
+        // Guardar valores en localStorage
+        localStorage.setItem("T°", temperatura);
+        localStorage.setItem("Alt", altitud);
     }
-  }
-  
+}
+
   // Cargar valores guardados en localStorage al cargar la página
   function cargarValoresGuardadosAbaco() {
     const temperaturaGuardada = localStorage.getItem("T°");
@@ -1021,20 +1084,15 @@ const abaco = {
 
 
     const abacoOge = {
-        temperaturas: [-40, -30, -20, -10, 0, 10, 20, 30, 40, 49, 50], // °C
+        temperaturas: [-40, -20, 0, 20, 40, 50], // °C
         altitudes: [-2000, 0, 2000, 4000, 6000, 8000, 10000, 12000, 14000, 16000, 18000, 20000], // metros
         maxPesos: [
-          [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3600, 3300], // para -40°C
-          [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3500, 3220], // para-30°C
-          [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3600, 3300, 3000], // para -20°C
-          [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3400, 3080, 2800], // para -10°C
-          [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3400, 3180, 2850, 2200], // para 0°C
-          [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3450, 3150, 2900, 2200, 2200], // para 10°C
-          [3680, 3680, 3680, 3680, 3680, 3680, 3520, 3240, 2980, 2200, 2200, 2200], // para 20°C
-          [3680, 3680, 3680, 3680, 3680, 3550, 3290, 2200, 2200, 2200, 2200, 2200], // para 30°C
-          [3680, 3680, 3680, 3680, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200], // para 40°C
-          [3680, 3680, 3680, 3680, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200], // para 49°C
-          [3680, 3680, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200], // para 50°C
+          [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3490, 3230, 2975], // para -40°C
+          [3680, 3680, 3680, 3680, 3680, 3680, 3680, 3680, 3510, 3200, 2920, 2700], // para-20°C
+          [3680, 3680, 3680, 3680, 3680, 3680, 3610, 3300, 3020, 2790, 2520, 2200], // para 0°C
+          [3680, 3680, 3680, 3680, 3680, 3400, 3160, 2900, 2600, 2500, 2300, 2200], // para 20°C
+          [3680, 3680, 3680, 3680, 3410, 2200, 2200, 2200, 2200, 2200, 2200, 2200], // para 40°C
+          [3680, 3610, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200], // para 50°C
         ]
       };
       
@@ -1083,17 +1141,20 @@ const abaco = {
       function actualizarResultadoAbacoOge() {
         const temperatura = parseFloat(document.getElementById("T°").value);
         const altitud = parseFloat(document.getElementById("Alt").value);
-      
+    
         if (!isNaN(temperatura) && !isNaN(altitud)) {
-          const pesoMaximo = calcularPesoMaximoOge(temperatura, altitud);
-          document.getElementById("oge").value = pesoMaximo;
-      
-          // Guardar valores en localStorage
-          localStorage.setItem("T°", temperatura);
-          localStorage.setItem("Alt", altitud);
+            const pesoMaximo = calcularPesoMaximoOge(temperatura, altitud);
+            document.getElementById("oge").value = pesoMaximo;
+    
+            // Forzar el evento input simula la entrada manual
+            document.getElementById("oge").dispatchEvent(new Event('input'));
+    
+            // Guardar valores en localStorage
+            localStorage.setItem("T°", temperatura);
+            localStorage.setItem("Alt", altitud);
         }
-      }
-      
+    }
+     
       // Cargar valores guardados en localStorage al cargar la página
       function cargarValoresGuardadosAbacoOge() {
         const temperaturaGuardada = localStorage.getItem("T°");
@@ -1118,4 +1179,210 @@ const abaco = {
       // Ejecutar al cargar la página
       cargarValoresGuardadosAbacoOge();
         // Datos de ejemplo del ábaco (simplificados)
-    
+      // esta en veremos para seleccionar el peso 
+
+
+function saveHelicopterSelection() {
+    var selectedValue = document.getElementById('optionsHelicopter').value;
+    localStorage.setItem('selectedHelicopter', selectedValue);
+
+    // Guardar también los valores de los inputs (weightH1, weightH2)
+    if (selectedValue === 'weightH1') {
+        var weightValue = document.getElementById('weightH1').value;
+        localStorage.setItem('helicopterWeight', weightValue);
+    } else if (selectedValue === 'weightH2') {
+        var weightValue = document.getElementById('weightH2').value;
+        localStorage.setItem('helicopterWeight', weightValue);
+    }
+}
+
+
+// Función para mostrar el valor en manifest.html
+function displayWeightInManifest() {
+    var selectedHelicopter = localStorage.getItem('selectedHelicopter');
+    var weightValue = localStorage.getItem('helicopterWeight');
+
+    var valueToDisplay;
+    if (selectedHelicopter === 'weightH1') {
+        valueToDisplay = weightValue || 2360;  // Valor por defecto 2360
+    } else if (selectedHelicopter === 'weightH2') {
+        valueToDisplay = weightValue || 2344;  // Valor por defecto 2344
+    }
+
+    document.querySelector('.blanco2.slr2').innerText = valueToDisplay;
+}
+
+// Función de inicialización para las tres páginas
+function initializePage() {
+    if (document.getElementById('optionsHelicopter')) {
+        // Si estamos en index.html, cargar el valor guardado y vincular el evento
+        var selectedValue = localStorage.getItem('selectedHelicopter');
+        if (selectedValue) {
+            document.getElementById('optionsHelicopter').value = selectedValue;
+        }
+        document.getElementById('optionsHelicopter').addEventListener('change', saveHelicopterSelection);
+    }
+
+    if (document.getElementById('weightH1') || document.getElementById('weightH2')) {
+        // Si estamos en W&B.html, actualizar los valores de los inputs
+        updateWeightInWandB();
+    }
+
+    if (document.querySelector('.blanco2.slr2')) {
+        // Si estamos en manifest.html, mostrar el valor en el div
+        displayWeightInManifest();
+    }
+}
+// Función para sumar los valores de los pesos para zero max y landing 
+function sumarPesoZFW() {
+    const clases = ["blanco2", "p2", "cp2", "l2", "c2", "r2", "cargo2", "hook2"];
+    let suma = 0;
+
+    // Sumar los valores de las clases especificadas
+    clases.forEach(clase => {
+        let elemento = document.querySelector("." + clase);
+        if (elemento) {
+            let valor = parseFloat(elemento.textContent.trim()) || 0;
+            suma += valor;
+        }
+    });
+
+    // Obtener el valor de .mF2.slr2
+    let valorExtraElemento = document.querySelector(".mF2");
+    let valorExtra = valorExtraElemento ? parseFloat(valorExtraElemento.textContent.trim()) || 0 : 0;
+
+    // Calcular suma2
+    let suma2 = suma + valorExtra;
+
+    let valorExtraElemento2 = document.querySelector(".lF2");
+    let valorExtra2 = valorExtraElemento2 ? parseFloat(valorExtraElemento2.textContent.trim()) || 0 : 0;
+
+    let suma3 = suma + valorExtra2;
+
+    // Mostrar el resultado en .zW2
+    let resultadoElemento = document.querySelector(".zW2");
+    if (resultadoElemento) {
+        resultadoElemento.textContent = suma.toFixed(1);
+    }
+
+    // Mostrar el resultado en .TW2.slr2
+    let resultadoSuma2Elemento = document.querySelector(".TW2");
+    if (resultadoSuma2Elemento) {
+        resultadoSuma2Elemento.textContent = suma2.toFixed(1);
+    }
+
+    let resultadoSuma3Elemento = document.querySelector(".LW2");
+    if (resultadoSuma3Elemento) {
+        resultadoSuma3Elemento.textContent = suma3.toFixed(1);
+    }
+}
+
+
+// Función para cargar y mostrar los valores
+function cargarValoresDeslizadores() {
+    const configuraciones = [
+        { key: 'selectedWeight', selector: '.blanco2' },
+        { key: 'paxValue', selector: '.p2' },
+        { key: 'sfValue', selector: '.cp2' },
+        { key: 'srlValue', selector: '.l2' },
+        { key: 'srcValue', selector: '.c2' },
+        { key: 'srrValue', selector: '.r2' },
+        { key: 'gValue', selector: '.cargo2' },
+        { key: 'fuelValue', selector: '.mF2' },
+        { key: 'fuelLandValue', selector: '.lF2' }
+    ];
+
+    configuraciones.forEach(config => {
+        const destinoDiv = document.querySelector(config.selector);
+        const valorGuardado = localStorage.getItem(config.key);
+
+        if (destinoDiv && valorGuardado !== null) {
+            destinoDiv.textContent = valorGuardado;
+        }
+    });
+
+    // ✅ Llamamos a sumarPesoZFW() después de asignar todos los valores
+    sumarPesoZFW();
+}
+
+
+// Función para sumar los valores de los momentos para zero max y landing
+function sumarMomentosZFW() {
+    const clases = ["blanco4", "p4", "cp4", "l4", "c4", "r4", "cargo4", "hook4"];
+    let suma = 0;
+
+    // Sumar los valores de las clases especificadas
+    clases.forEach(clase => {
+        let elemento = document.querySelector("." + clase);
+        if (elemento) {
+            let valor = parseFloat(elemento.textContent.trim()) || 0;
+            suma += valor;
+        }
+    });
+
+    // Obtener el valor de .mF2.slr2
+    let valorExtraElemento = document.querySelector(".mF4");
+    let valorExtra = valorExtraElemento ? parseFloat(valorExtraElemento.textContent.trim()) || 0 : 0;
+
+    // Calcular suma2
+    let suma2 = suma + valorExtra;
+
+    let valorExtraElemento2 = document.querySelector(".lF4");
+    let valorExtra2 = valorExtraElemento2 ? parseFloat(valorExtraElemento2.textContent.trim()) || 0 : 0;
+
+    let suma3 = suma + valorExtra2;
+
+    // Mostrar el resultado en .zW2
+    let resultadoElemento = document.querySelector(".zW4");
+    if (resultadoElemento) {
+        resultadoElemento.textContent = suma.toFixed(1);
+    }
+
+    // Mostrar el resultado en .TW2.slr2
+    let resultadoSuma2Elemento = document.querySelector(".TW4");
+    if (resultadoSuma2Elemento) {
+        resultadoSuma2Elemento.textContent = suma2.toFixed(1);
+    }
+
+    let resultadoSuma3Elemento = document.querySelector(".LW4");
+    if (resultadoSuma3Elemento) {
+        resultadoSuma3Elemento.textContent = suma3.toFixed(1);
+    }
+}
+
+
+// Función para cargar y mostrar los valores
+function cargarValoresDeslizadores2() {
+    const configuraciones = [
+        { key: 'selectedWeight', selector: '.blanco2' },
+        { key: 'paxValue', selector: '.p2' },
+        { key: 'sfValue', selector: '.cp2' },
+        { key: 'srlValue', selector: '.l2' },
+        { key: 'srcValue', selector: '.c2' },
+        { key: 'srrValue', selector: '.r2' },
+        { key: 'gValue', selector: '.cargo2' },
+        { key: 'fuelValue', selector: '.mF2' },
+        { key: 'fuelLandValue', selector: '.lF2' }
+    ];
+
+    configuraciones.forEach(config => {
+        const destinoDiv = document.querySelector(config.selector);
+        const valorGuardado = localStorage.getItem(config.key);
+
+        if (destinoDiv && valorGuardado !== null) {
+            destinoDiv.textContent = valorGuardado;
+        }
+    });
+
+    // ✅ Llamamos a sumarPesoZFW() después de asignar todos los valores
+    sumarPesoZFW();
+    sumarMomentosZFW();
+}
+
+
+// Llamar a initializePage cuando la página se carga
+window.onload = function() {
+    cargarValoresDeslizadores2();
+};
+
+window.location.href = `manifest.html?fuel=${valueFuel}&fuelLand=${valueFuelLand}`;
