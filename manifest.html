@@ -20,10 +20,26 @@
                 
             </div>
             <div class="title2LM">
-                <div class="title2LM1">Regitration:</div>
-                <div class="title2LM2">Date:</div>
-                <div class="title2LM3">FROM:</div>
-                <div class="title2LM4">TO:</div>
+                <div class="title2LM1">Regitration:<div class="regist1"><input type="text" id="regist_2" class="name-value" placeholder="Registration" readonly></div></div>
+                <div class="title2LM2">Date:<div class="date1"><input type="date" id="date_2" class="name-value" placeholder="Date" ></div></div>
+                <div class="title2LM3">FROM:<div class="from1"><input type="text" id="from_2" class="name-value" placeholder="From" readonly></div></div>
+                <div class="title2LM4">TO:<div class="to1"><input type="text" id="to_2" class="name-value" placeholder="To" readonly></div></div>
+                <div class="flightTHour slrr1">
+                        <div class="hourA">Departur time: <div class="hourA_2"></div></div>
+                        <div class="hourB">Destination time:<div class="hourB_2"></div></div>
+                </div>
+                <div class="flightTTime slrr2">flight Time
+                        <div class="ft_2">00h : 00min</div>
+                </div>
+                <div class="flightTParameters slrr3">
+                        <div class="parametersA">PA:<div class="paramA_2"></div></div>
+                        <div class="parametersB">OAT:<div class="paramB_2"></div></div>
+                </div>
+                <div class="flightTperformance slrr4">
+                        <div class="performanceA">OGE MAX WEIGHT:<div class="perfA_2"></div></div>
+                        <div class="performanceB">IGE MAX WEIGHT:<div class="perfB_2"></div></div>
+                </div>
+                
             </div>
             <div class="weightDataLM">
                 <div class="armLM">
@@ -46,8 +62,8 @@
                 </div>   
                 <div class="HelicopterLM">
                     <div class="blanco1 slr1">Helicopter</div>
-                    <div class="blanco2 slr2"></div>
-                    <div class="blanco3 slr3"></div>
+                    <div class="blanco2 slr2"><span id="takeoffw"></span></div>
+                    <div class="blanco3 slr3"><span id="takeoffArm"></span></div>
                     <div class="blanco4 slr4"></div>
                     <div class="blanco5 slr5"></div>
                     <div class="blanco6 slr6"></div>
@@ -55,57 +71,57 @@
                 <div class="pilotLM"> 
                     <div class="p1 slr1">Pilot Seat</div>
                     <div class="p2 slr2"></div>
-                    <div class="p3 slr3"></div>
+                    <div class="p3 slr3">98</div>
                     <div class="p4 slr4"></div>
-                    <div class="p5 slr5">1.2</div>
+                    <div class="p5 slr5">14</div>
                     <div class="p6 slr6"></div>
                 </div>
                 <div class="cpLM">
                     <div class="cp1 slr1">Forwar Seat</div>
                     <div class="cp2 slr2"></div>
-                    <div class="cp3 slr3"></div>
+                    <div class="cp3 slr3">98</div>
                     <div class="cp4 slr4"></div>
-                    <div class="cp5 slr5">1.2</div>
+                    <div class="cp5 slr5">-13</div>
                     <div class="cp6 slr6"></div>
                 </div>
                 <div class="lLM">
                     <div class="l1 slr1">Left Rear Seat</div>
                     <div class="l2 slr2"></div>
-                    <div class="l3 slr3"></div>
+                    <div class="l3 slr3">135</div>
                     <div class="l4 slr4"></div>
-                    <div class="l5 slr5"></div>
+                    <div class="l5 slr5">-18.5</div>
                     <div class="l6 slr6"></div>
                 </div>
                 <div class="cLM">
                     <div class="c1 slr1">Center Rear Seat</div>
                     <div class="c2 slr2"></div>
-                    <div class="c3 slr3"></div>
+                    <div class="c3 slr3">135</div>
                     <div class="c4 slr4"></div>
-                    <div class="c5 slr5"></div>
+                    <div class="c5 slr5">0</div>
                     <div class="c6 slr6"></div>
                 </div>
                 <div class="rLM">
                     <div class="r1 slr1">Right Rear Seat</div>
-                    <div class="r2 slr2" ></div>
-                    <div class="r3 slr3"></div>
+                    <div class="r2 slr2"></div>
+                    <div class="r3 slr3">1354</div>
                     <div class="r4 slr4"></div>
-                    <div class="r5 slr5"></div>
+                    <div class="r5 slr5">18.5</div>
                     <div class="r6 slr6"></div>
                 </div>
                 <div class="cargoLM">
                     <div class="cargo1 slr1">Cargo</div>
                     <div class="cargo2 slr2" ></div>
-                    <div class="cargo3 slr3"></div>
+                    <div class="cargo3 slr3">168</div>
                     <div class="cargo4 slr4"></div>
-                    <div class="cargo5 slr5"></div>
+                    <div class="cargo5 slr5">0</div>
                     <div class="cargo6 slr6"></div>
                 </div>
                 <div class="hookLM">
                     <div class="hook1 slr1">External / hook</div>
-                    <div class="hook2 slr2" ></div>
-                    <div class="hook3 slr3"></div>
+                    <div class="hook2 slr2" >0</div>
+                    <div class="hook3 slr3">165.1</div>
                     <div class="hook4 slr4"></div>
-                    <div class="hook5 slr5"></div>
+                    <div class="hook5 slr5">0</div>
                     <div class="hook6 slr6"></div>
                 </div>
                 <div class="zWeightLM">
@@ -113,7 +129,7 @@
                     <div class="zW2 slr2"></div>
                     <div class="zW3 slr3"></div>
                     <div class="zW4 slr4"></div>
-                    <div class="zW5 slr5"></div>
+                    <div class="zW5 slr5">0</div>
                     <div class="zW6 slr6"></div>
                 </div>
                 <div class="mFuelLM">
@@ -121,7 +137,7 @@
                     <div class="mF2 slr2"></div>
                     <div class="mF3 slr3"></div>
                     <div class="mF4 slr4"></div>
-                    <div class="mF5 slr5"></div>
+                    <div class="mF5 slr5">0</div>
                     <div class="mF6 slr6"></div>
                 </div>
                 <div class="TOWeightLM">
@@ -129,23 +145,15 @@
                     <div class="TW2 slr2" ></div>
                     <div class="TW3 slr3"></div>
                     <div class="TW4 slr4"></div>
-                    <div class="TW5 slr5"></div>
+                    <div class="TW5 slr5">0</div>
                     <div class="TW6 slr6"></div>
-                </div>
-                <div class="uFuelLM">
-                    <div class="uF1 slr1">Fuel Burned</div>
-                    <div class="uF2 slr2" ></div>
-                    <div class="uF3 slr3"></div>
-                    <div class="uF4 slr4"></div>
-                    <div class="uF5 slr5"></div>
-                    <div class="uF6 slr6"></div>
                 </div>
                 <div class="lFuelLM">
                     <div class="lF1 slr1">Ldg. Fuel</div>
                     <div class="lF2 slr2" ></div>
                     <div class="lF3 slr3"></div>
                     <div class="lF4 slr4"></div>
-                    <div class="lF5 slr5"></div>
+                    <div class="lF5 slr5">0</div>
                     <div class="lF6 slr6"></div>
                 </div>
                 <div class="lWeightLM">
@@ -153,7 +161,7 @@
                     <div class="LW2 slr2" ></div>
                     <div class="LW3 slr3"></div>
                     <div class="LW4 slr4"></div>
-                    <div class="LW5 slr5"></div>
+                    <div class="LW5 slr5">0</div>
                     <div class="LW6 slr6"></div>
                 </div>
             </div>
@@ -161,45 +169,268 @@
                 <div class="sign">sign manifest</div>
                 <div class="signName">Pilot Name</div>
             </div>
-            <div class="flightDataLM">
-                <div class="flightTitle"> FLIGHT DATA</div>
-                <div class="flightTHour slrr1">
-                    <div class="hourA">Departur time:</div>
-                    <div class="hourB">Destination time:</div>
-                </div>
-                <div class="flightTTime slrr2">flight Time
-                    <div>00h : 00min</div>
-                </div>
-                <div class="flightTParameters slrr3">
-                    <div class="parametersA">PA:</div>
-                    <div class="parametersB">OAT:</div>
-                </div>
-                <div class="flightTperformance slrr4">
-                    <div class="performanceA">OGE MAX WEIGHT:</div>
-                    <div class="performanceB">IGE MAX WEIGHT:</div>
-                </div>
-            </div>
+            
             <div class="grafic1LM">
-                
+                <canvas id="chartManifest"></canvas>
             </div>
+            
+            
             <div class="grafic2LM"></div>
             <div class="manifest">
                 <div class="manTitle">PASENGER MANIFEST</div>
-                <div class="man1 slrrr1"></div>
-                <div class="man2 slrrr2"></div>
-                <div class="man3 slrrr3"></div>
-                <div class="man4 slrrr4"></div>
-                <div class="man5 slrrr5"></div>
+                <div class="slrrr1">PILOT:<div class="man1"><input type="text" id="PS_2" class="name-value" placeholder="Name PS" readonly></div></div>
+                <div class="slrrr2">PAX 1: <div class="man2"><input type="text" id="f1_2" class="name-value" placeholder="Name f1" readonly></div></div>
+                <div class="slrrr3">PAX 2: <div class="man3"><input type="text" id="RL_2" class="name-value" placeholder="Name RL" readonly></div></div>
+                <div class="slrrr4">PAX 3: <div class="man4"><input type="text" id="CC_2" class="name-value" readonly></div></div>
+                <div class="slrrr5">PAX 4: <div class="man5"><input type="text" id="R_2" class="name-value" placeholder="Name R" readonly></div></div>
             </div>
             <div class="butoons">
                 <div class="btoon1 slrrrr1">SIGN MANIFEST</div>
                 <div class="btoon2 slrrrr2">DELETE SIGNATURE</div>
                 <div class="btoon3 slrrrr3">SEND / PIRNT</div>
             </div>
+            
         </div>
     </main>
+
+    
     
     <script src="w&b.js"></script>
+    <script>
+        let myChart1;
+        let myChart2;
+        
+        function grafic() {
+            const takeoffW = parseFloat(document.getElementById('takeoffw')?.textContent) || 0;
+            const landingW = parseFloat(document.getElementById('landingw')?.textContent) || 0;
+            const zeroW = parseFloat(document.getElementById('zerow')?.textContent) || 0;
+        
+            const takeoffArm = parseFloat(document.getElementById('takeoffArm')?.textContent) || 0;
+            const landingArm = parseFloat(document.getElementById('landingArm')?.textContent) || 0;
+            const zeroArm = parseFloat(document.getElementById('zeroArm')?.textContent) || 0;
+        
+            const newData = [
+                { x: takeoffArm, y: takeoffW, backgroundColor: 'orange', borderColor: 'orange', label: 'Total' },
+                { x: landingArm, y: landingW, backgroundColor: 'green', borderColor: 'green', label: 'Landing' },
+                { x: zeroArm, y: zeroW, backgroundColor: 'blue', borderColor: 'blue', label: 'Zero' }
+            ];
+        
+            const polygonData = [
+                { x: 171.5, y: 2234 }, { x: 170, y: 2234 }, { x: 161.2, y: 2500 }, { x: 161.2, y: 3200 },
+                { x: 161.6, y: 3680 }, { x: 169.9, y: 3680 }, { x: 171.5, y: 2600 }, { x: 171.5, y: 2234 }
+            ];
+        
+            const polygonExternalLoad = [
+                { x: 161.6, y: 3680 }, { x: 162.2, y: 4475 }, { x: 169, y: 4475 },
+                { x: 169.9, y: 3680 }, { x: 161.6, y: 3680 }
+            ];
+        
+            const polygonAftCG = [
+                { x: 171.5, y: 2234 }, { x: 170, y: 2234 }, { x: 168.4, y: 3680 }, { x: 168.1, y: 4475 },
+                { x: 169, y: 4475 }, { x: 169.9, y: 3680 }, { x: 171.5, y: 2600 }, { x: 171.5, y: 2234 }
+            ];
+        
+            const data = {
+                datasets: [
+                    {
+                        label: 'Max Weight',
+                        data: newData,
+                        backgroundColor: newData.map(point => point.backgroundColor),
+                        borderColor: newData.map(point => point.borderColor),
+                        borderWidth: 1,
+                        pointRadius: 5,
+                        datalabels: {
+                            color: 'grey',
+                            display: true,
+                            formatter: value => value.label
+                        }
+                    },
+                    {
+                        data: polygonData,
+                        backgroundColor: 'rgba(192, 75, 75, 0.2)',
+                        borderColor: 'rgba(192, 75, 75, 1)',
+                        borderWidth: 2,
+                        fill: true,
+                        pointRadius: 0,
+                        type: 'line',
+                        tension: 0,
+                        datalabels: { display: false }
+                    },
+                    {
+                        data: polygonExternalLoad,
+                        backgroundColor: 'rgba(75, 75, 192, 0.2)',
+                        borderColor: 'grey',
+                        borderWidth: 2,
+                        fill: true,
+                        pointRadius: 0,
+                        type: 'line',
+                        tension: 0,
+                        datalabels: { display: false }
+                    },
+                    {
+                        data: polygonAftCG,
+                        backgroundColor: 'rgba(75, 75, 192, 0.9)',
+                        borderColor: 'rgba(75, 75, 192, 1)',
+                        borderWidth: 2,
+                        fill: true,
+                        pointRadius: 0,
+                        type: 'line',
+                        tension: 0,
+                        datalabels: { display: false }
+                    }
+                ]
+            };
+        
+            const config = {
+                type: 'scatter',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        datalabels: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom',
+                            min: 158,
+                            max: 174,
+                            title: { display: true, text: 'CG (inches)' }
+                        },
+                        x1: {
+                            type: 'linear',
+                            position: 'top',
+                            min: 4022,
+                            max: 4420,
+                            title: { display: true, text: 'CG (milimeters)' }
+                        },
+                        y: {
+                            min: 2000,
+                            max: 4800,
+                            title: { display: true, text: 'Weight (lbs)' }
+                        },
+                        y1: {
+                            position: 'right',
+                            min: 910,
+                            max: 2175,
+                            title: { display: true, text: 'Weight (kg)' }
+                        }
+                    }
+                }
+            };
+        
+            function createOrUpdateChart(canvasId, chartVar) {
+                const canvas = document.getElementById(canvasId);
+                if (!canvas) return chartVar;
+        
+                const ctx = canvas.getContext('2d');
+                if (!ctx) return chartVar;
+        
+                if (chartVar) {
+                    chartVar.data.datasets[0].data = newData;
+                    chartVar.data.datasets[1].data = polygonData;
+                    chartVar.data.datasets[2].data = polygonExternalLoad;
+                    chartVar.data.datasets[3].data = polygonAftCG;
+                    chartVar.update();
+                } else {
+                    chartVar = new Chart(ctx, config);
+                }
+        
+                return chartVar;
+            }
+        
+            myChart1 = createOrUpdateChart('chartManifest', myChart1);
+            myChart2 = createOrUpdateChart('myChart', myChart2);
+        }
+        
+        // Ejecutar la función al cargar el DOM
+        document.addEventListener('DOMContentLoaded', grafic);
+        
+
+     
+    // ------------------------
+    // 9. Agregar Event Listeners Adicionales
+    // ------------------------
+
+    function setupAdditionalEventListeners() {
+        // Actualizar porcentajes y stanks
+        document.getElementById('escala-fuel').addEventListener('input', () => {
+            updatePercentageFromRange('escala-fuel', 'percentageFuel', '#stank1');
+            calculateEndurance();
+            actualizarSuma();
+            actualizarSumaArm();
+            grafic();
+            
+        });
+
+        document.getElementById('escala-fuelLand').addEventListener('input', () => {
+            updatePercentageFromRange('escala-fuelLand', 'percentageFuelLand', '#stank2');
+            calculateReserve();
+            actualizarSuma();
+            actualizarSumaArm();
+            grafic();
+            
+        });
+
+        // Consumir evento 'input' para el consumo
+        document.getElementById('consumption').addEventListener('input', () => {
+            calculateEndurance();
+            calculateReserve();
+            actualizarSuma();
+            actualizarSumaArm();
+            grafic();
+            
+        });
+        // Calcular peso basado en Altitud y Temperatura
+    }
+
+    // ------------------------
+    // 10. Inicializar Funcionalidades
+    // ------------------------
+
+    function initialize() {
+        // Inicializar EventListeners
+        eventListenersConfig.forEach(config => {
+            setupEventListener(config.rangeId, config.spanId, config.inputClass);
+        });
+
+        setupAdditionalEventListeners();
+        actualizarSuma();
+        actualizarSumaArm();
+        grafic();        
+        calculateEndurance();
+        calculateReserve();
+        syncPilotFields()
+
+    }
+
+    // Ejecutar la inicialización
+    initialize();
+    
+    const params = new URLSearchParams(window.location.search);
+const fuel = params.get('fuel') || 0;
+const fuelLand = params.get('fuelLand') || 0;
+document.getElementById('takeoffw').textContent = fuel;
+document.getElementById('landingw').textContent = fuelLand;
+grafic();
+
+
+function esperarYGraficar() {
+    setTimeout(() => {
+        if (document.getElementById('chartManifest')) {
+            grafic();
+        }
+    }, 500);  // Espera medio segundo antes de ejecutar la función
+}
+
+document.addEventListener('DOMContentLoaded', esperarYGraficar);
+
+  
+        </script>
+
+   
     
 </body>
 </html>
