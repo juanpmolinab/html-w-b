@@ -25,12 +25,10 @@
                 <div class="title2LM3">FROM:<div class="from1"><input type="text" id="from_2" class="name-value" placeholder="From" readonly></div></div>
                 <div class="title2LM4">TO:<div class="to1"><input type="text" id="to_2" class="name-value" placeholder="To" readonly></div></div>
                 <div class="flightTHour slrr1">
-                        <div class="hourA">Departur time: <div class="hourA_2"></div></div>
-                        <div class="hourB">Destination time:<div class="hourB_2"></div></div>
+                        <div class="hourA">Departur time:<input type="time" id="date_2" class="name-value" placeholder="Departur time:" > <div class="hourA_2"></div></div>
+                        <div class="hourB">Destination time:<input type="time" id="date_2" class="name-value" placeholder="Destination time:" ><div class="hourB_2"></div></div>
                 </div>
-                <div class="flightTTime slrr2">flight Time
-                        <div class="ft_2">00h : 00min</div>
-                </div>
+                <div class="flightTTime slrr2">flight Time: <input type="time" id="date_2" class="name-value" placeholder="flight time:" ></div>
                 <div class="flightTParameters slrr3">
                         <div class="parametersA">PA:<div class="paramA_2"></div></div>
                         <div class="parametersB">OAT:<div class="paramB_2"></div></div>
@@ -62,10 +60,10 @@
                 </div>   
                 <div class="HelicopterLM">
                     <div class="blanco1 slr1">Helicopter</div>
-                    <div class="blanco2 slr2"><span id="takeoffw"></span></div>
-                    <div class="blanco3 slr3"><span id="takeoffArm"></span></div>
+                    <div class="blanco2 slr2"></div>
+                    <div class="blanco3 slr3"></div>
                     <div class="blanco4 slr4"></div>
-                    <div class="blanco5 slr5"></div>
+                    <div class="blanco5 slr5">0</div>
                     <div class="blanco6 slr6"></div>
                 </div> 
                 <div class="pilotLM"> 
@@ -103,7 +101,7 @@
                 <div class="rLM">
                     <div class="r1 slr1">Right Rear Seat</div>
                     <div class="r2 slr2"></div>
-                    <div class="r3 slr3">1354</div>
+                    <div class="r3 slr3">135</div>
                     <div class="r4 slr4"></div>
                     <div class="r5 slr5">18.5</div>
                     <div class="r6 slr6"></div>
@@ -166,7 +164,9 @@
                 </div>
             </div>
             <div class="signLM">
-                <div class="sign">sign manifest</div>
+                <div class="sign">
+                    <canvas id="canvasSign" width="300" height="150" style="border:1px solid #000;"></canvas>
+                  </div>
                 <div class="signName">Pilot Name</div>
             </div>
             
@@ -175,7 +175,9 @@
             </div>
             
             
-            <div class="grafic2LM"></div>
+            <div class="grafic2LM">
+                <canvas id="chartLateral"></canvas>
+            </div>
             <div class="manifest">
                 <div class="manTitle">PASENGER MANIFEST</div>
                 <div class="slrrr1">PILOT:<div class="man1"><input type="text" id="PS_2" class="name-value" placeholder="Name PS" readonly></div></div>
@@ -185,9 +187,9 @@
                 <div class="slrrr5">PAX 4: <div class="man5"><input type="text" id="R_2" class="name-value" placeholder="Name R" readonly></div></div>
             </div>
             <div class="butoons">
-                <div class="btoon1 slrrrr1">SIGN MANIFEST</div>
-                <div class="btoon2 slrrrr2">DELETE SIGNATURE</div>
-                <div class="btoon3 slrrrr3">SEND / PIRNT</div>
+                
+                <div class="btoon2 slrrrr2" onclick="limpiarFirma()">DELETE SIGNATURE</div>
+                <div id="btnImprimir" class="btoon3 slrrrr3">SEND / PRINT</div>
             </div>
             
         </div>
@@ -195,41 +197,389 @@
 
     
     
-    <script src="w&b.js"></script>
+    <script src="w&b.js" defer></script>
+
+<script>
+    // sumar los momentos para calcular el brazo longitudinal
+    function sumarValoresClases() {
+        function limpiarYConvertirNumero(texto) {
+            if (!texto) return 0;
+            texto = texto.trim().replace(/[^\d.,-]/g, '');
+            if (texto.includes(',')) {
+                texto = texto.replace(',', '.');
+            }
+            const numero = parseFloat(texto);
+            return isNaN(numero) ? 0 : numero;
+        }
+    
+        const clases = ["blanco4", "p4", "cp4", "l4", "c4", "r4", "cargo4", "hook4"];
+        let suma = 0;
+    
+        clases.forEach(clase => {
+            const elemento = document.querySelector(`.${clase}`);
+            if (elemento) {
+                const valorTexto = elemento.textContent;
+                const numero = limpiarYConvertirNumero(valorTexto);
+                suma += numero;
+            }
+        });
+    
+            
+        // Obtener el valor de .mF2.slr2
+        let valorExtraElemento = document.querySelector(".mF4");
+        let valorExtra = valorExtraElemento ? parseFloat(valorExtraElemento.textContent.trim()) || 0 : 0;
+    
+        // Calcular suma2
+        let suma2 = suma + valorExtra;
+    
+        let valorExtraElemento2 = document.querySelector(".lF4");
+        let valorExtra2 = valorExtraElemento2 ? parseFloat(valorExtraElemento2.textContent.trim()) || 0 : 0;
+    
+        let suma3 = suma + valorExtra2;
+    
+    
+        const resultado = document.querySelector(".zW4");
+        if (resultado) {
+            resultado.textContent = suma.toFixed(1);
+        }
+        
+        // Mostrar el resultado en .TW2.slr2
+        let resultadoSuma2Elemento = document.querySelector(".TW4");
+        if (resultadoSuma2Elemento) {
+            resultadoSuma2Elemento.textContent = suma2.toFixed(1);
+        }
+    
+        let resultadoSuma3Elemento = document.querySelector(".LW4");
+        if (resultadoSuma3Elemento) {
+            resultadoSuma3Elemento.textContent = suma3.toFixed(1);
+        }
+        
+    }
+
+// Ejecutar cuando todo esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(sumarValoresClases, 50);  // espera 200ms
+});
+
+
+// sumar los momentos para calcular el brazo lateral
+function sumarValoresClasesLateral() {
+    function limpiarYConvertirNumero(texto) {
+        if (!texto) return 0;
+        texto = texto.trim().replace(/[^\d.,-]/g, '');
+        if (texto.includes(',')) {
+            texto = texto.replace(',', '.');
+        }
+        const numero = parseFloat(texto);
+        return isNaN(numero) ? 0 : numero;
+    }
+
+    const clases = ["blanco6", "p6", "cp6", "l6", "c6", "r6", "cargo6", "hook6"];
+    let suma = 0;
+
+    clases.forEach(clase => {
+        const elemento = document.querySelector(`.${clase}`);
+        if (elemento) {
+            const valorTexto = elemento.textContent;
+            const numero = limpiarYConvertirNumero(valorTexto);
+            suma += numero;
+        }
+    });
+
+        
+    // Obtener el valor de .mF2.slr2
+    let valorExtraElemento = document.querySelector(".mF6");
+    let valorExtra = valorExtraElemento ? parseFloat(valorExtraElemento.textContent.trim()) || 0 : 0;
+
+    // Calcular suma2
+    let suma2 = suma + valorExtra;
+
+    let valorExtraElemento2 = document.querySelector(".lF6");
+    let valorExtra2 = valorExtraElemento2 ? parseFloat(valorExtraElemento2.textContent.trim()) || 0 : 0;
+
+    let suma3 = suma + valorExtra2;
+
+
+    const resultado = document.querySelector(".zW6");
+    if (resultado) {
+        resultado.textContent = suma.toFixed(1);
+    }
+    
+    // Mostrar el resultado en .TW2.slr2
+    let resultadoSuma2Elemento = document.querySelector(".TW6");
+    if (resultadoSuma2Elemento) {
+        resultadoSuma2Elemento.textContent = suma2.toFixed(1);
+    }
+
+    let resultadoSuma3Elemento = document.querySelector(".LW6");
+    if (resultadoSuma3Elemento) {
+        resultadoSuma3Elemento.textContent = suma3.toFixed(1);
+    }
+    
+}
+
+// Ejecutar cuando todo esté listo
+document.addEventListener('DOMContentLoaded', function() {
+setTimeout(sumarValoresClasesLateral, 50);  // espera 50ms
+});
+
+
+// calcular el brazo longitudinal y lateral
+function dividirYMostrar(numeradorClase, denominadorClase, resultadoClase) {
+    function limpiarYConvertirNumero(texto) {
+        if (!texto) return 0;
+        texto = texto.trim().replace(/[^\d.,-]/g, '');
+        if (texto.includes(',')) {
+            texto = texto.replace(',', '.');
+        }
+        const numero = parseFloat(texto);
+        return isNaN(numero) ? 0 : numero;
+    }
+
+    const numeradorElemento = document.querySelector(`.${numeradorClase}`);
+    const denominadorElemento = document.querySelector(`.${denominadorClase}`);
+    const resultadoElemento = document.querySelector(`.${resultadoClase}`);
+
+    if (numeradorElemento && denominadorElemento && resultadoElemento) {
+        const numerador = limpiarYConvertirNumero(numeradorElemento.textContent);
+        const denominador = limpiarYConvertirNumero(denominadorElemento.textContent);
+
+        if (denominador !== 0) {
+            const resultado = numerador / denominador;
+            resultadoElemento.textContent = resultado.toFixed(1); // 1 decimal
+        } else {
+            resultadoElemento.textContent = "∞"; // O podrías poner "0" o "Error"
+        }
+    } else {
+        console.error(`No se encontró alguna de las clases: ${numeradorClase}, ${denominadorClase} o ${resultadoClase}`);
+    }
+}
+
+// Ahora simplemente ejecutas:
+
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        dividirYMostrar('zW4', 'zW2', 'zW3');
+        dividirYMostrar('TW4', 'TW2', 'TW3');
+        dividirYMostrar('LW4', 'LW2', 'LW3');
+        dividirYMostrar('zW6', 'zW2', 'zW5');
+        dividirYMostrar('TW6', 'TW2', 'TW5');
+        dividirYMostrar('LW6', 'LW2', 'LW5');
+    }, 100);
+});
+
+</script>
+
+
+<script>
+    let myChart1;
+    
+    function limpiarYConvertirNumero(texto) {
+        if (!texto) return 0;
+        texto = texto.toString().trim().replace(/[^\d.,-]/g, '');
+        if (texto.includes(',')) {
+            texto = texto.replace(',', '.');
+        }
+        const numero = parseFloat(texto);
+        return isNaN(numero) ? 0 : numero;
+    }
+    
+    function grafic() {
+        // Obtener valores para el gráfico y limpiarlos
+        const takeoffW = limpiarYConvertirNumero(document.querySelector('.TW2').innerText);
+        const landingW = limpiarYConvertirNumero(document.querySelector('.LW2').innerText);
+        const zeroW = limpiarYConvertirNumero(document.querySelector('.zW2').innerText);
+        
+        const takeoffArm = limpiarYConvertirNumero(document.querySelector('.TW3').innerText);
+        const landingArm = limpiarYConvertirNumero(document.querySelector('.LW3').innerText);
+        const zeroArm = limpiarYConvertirNumero(document.querySelector('.zW3').innerText);
+        
+    
+        // Datos para el gráfico de dispersión
+        const newData = [
+            { x: takeoffArm, y: takeoffW, backgroundColor: 'orange', borderColor: 'orange', label: 'Total' },
+            { x: landingArm, y: landingW, backgroundColor: 'green', borderColor: 'green', label: 'Landing' },
+            { x: zeroArm, y: zeroW, backgroundColor: 'blue', borderColor: 'blue', label: 'Zero' }
+        ];
+    
+        // Puntos del polígono (zona límite)
+        const polygonData = [
+            { x: 171.5, y: 2234 }, { x: 170, y: 2234 }, { x: 161.2, y: 2500 }, { x: 161.2, y: 3200 },
+            { x: 161.6, y: 3680 }, { x: 169.9, y: 3680 }, { x: 171.5, y: 2600 }, { x: 171.5, y: 2234 }
+        ];
+    
+        const polygonExternalLoad = [
+            { x: 161.6, y: 3680 }, { x: 162.2, y: 4475 }, { x: 169, y: 4475 },
+            { x: 169.9, y: 3680 }, { x: 161.6, y: 3680 }
+        ];
+    
+        const polygonAftCG = [
+            { x: 171.5, y: 2234 }, { x: 170, y: 2234 }, { x: 168.4, y: 3680 }, { x: 168.1, y: 4475 },
+            { x: 169, y: 4475 }, { x: 169.9, y: 3680 }, { x: 171.5, y: 2600 }, { x: 171.5, y: 2234 }
+        ];
+    
+        const data = {
+            datasets: [
+                {
+                    label: 'Max Weight',
+                    data: newData,
+                    backgroundColor: newData.map(point => point.backgroundColor),
+                    borderColor: newData.map(point => point.borderColor),
+                    borderWidth: 1,
+                    pointRadius: 5,
+                    datalabels: {
+                        color: 'grey',
+                        display: true,
+                        formatter: value => value.label
+                    }
+                },
+                {
+                    data: polygonData,
+                    backgroundColor: 'rgba(192, 75, 75, 0.2)',
+                    borderColor: 'rgba(192, 75, 75, 1)',
+                    borderWidth: 2,
+                    fill: true,
+                    pointRadius: 0,
+                    type: 'line',
+                    tension: 0,
+                    datalabels: { display: false }
+                },
+                {
+                    data: polygonExternalLoad,
+                    backgroundColor: 'rgba(75, 75, 192, 0.2)',
+                    borderColor: 'grey',
+                    borderWidth: 2,
+                    fill: true,
+                    pointRadius: 0,
+                    type: 'line',
+                    tension: 0,
+                    datalabels: { display: false }
+                },
+                {
+                    data: polygonAftCG,
+                    backgroundColor: 'rgba(75, 75, 192, 0.9)',
+                    borderColor: 'rgba(75, 75, 192, 1)',
+                    borderWidth: 2,
+                    fill: true,
+                    pointRadius: 0,
+                    type: 'line',
+                    tension: 0,
+                    datalabels: { display: false }
+                }
+            ]
+        };
+    
+        const config = {
+            type: 'scatter',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    datalabels: { display: false }
+                },
+                scales: {
+                    x: {
+                        type: 'linear',
+                        position: 'bottom',
+                        min: 158,
+                        max: 174,
+                        title: { display: true, text: 'CG (inches)' }
+                    },
+                    x1: {
+                        type: 'linear',
+                        position: 'top',
+                        min: 4022,
+                        max: 4420,
+                        title: { display: true, text: 'LONGITUDINAL' }
+                    },
+                    y: {
+                        min: 2000,
+                        max: 4800,
+                        title: { display: true, text: 'Weight (lbs)' }
+                    },
+                    y1: {
+                        position: 'right',
+                        min: 910,
+                        max: 2175,
+                        title: { display: true, text: 'Weight (kg)' }
+                    }
+                }
+            }
+        };
+    
+        function createOrUpdateChart(canvasId, chartVar) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return chartVar;
+    
+            const ctx = canvas.getContext('2d');
+    
+            if (chartVar) {
+                chartVar.data.datasets[0].data = newData;
+                chartVar.data.datasets[1].data = polygonData;
+                chartVar.data.datasets[2].data = polygonExternalLoad;
+                chartVar.data.datasets[3].data = polygonAftCG;
+                chartVar.update();
+            } else {
+                chartVar = new Chart(ctx, config);
+            }
+    
+            return chartVar;
+        }
+    
+        myChart1 = createOrUpdateChart('chartManifest', myChart1);
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(grafic, 200);
+    });
+    </script>
+
+    
     <script>
-        let myChart1;
         let myChart2;
         
-        function grafic() {
-            const takeoffW = parseFloat(document.getElementById('takeoffw')?.textContent) || 0;
-            const landingW = parseFloat(document.getElementById('landingw')?.textContent) || 0;
-            const zeroW = parseFloat(document.getElementById('zerow')?.textContent) || 0;
+        function limpiarYConvertirNumero(texto) {
+            if (!texto) return 0;
+            texto = texto.toString().trim().replace(/[^\d.,-]/g, '');
+            if (texto.includes(',')) {
+                texto = texto.replace(',', '.');
+            }
+            const numero = parseFloat(texto);
+            return isNaN(numero) ? 0 : numero;
+        }
         
-            const takeoffArm = parseFloat(document.getElementById('takeoffArm')?.textContent) || 0;
-            const landingArm = parseFloat(document.getElementById('landingArm')?.textContent) || 0;
-            const zeroArm = parseFloat(document.getElementById('zeroArm')?.textContent) || 0;
+        function grafic2() {
+            // Obtener valores para el gráfico y limpiarlos
+            const takeoffW = limpiarYConvertirNumero(document.querySelector('.TW2').innerText);
+            const landingW = limpiarYConvertirNumero(document.querySelector('.LW2').innerText);
+            const zeroW = limpiarYConvertirNumero(document.querySelector('.zW2').innerText);
+            
+            const takeoffArm = limpiarYConvertirNumero(document.querySelector('.TW5').innerText);
+            const landingArm = limpiarYConvertirNumero(document.querySelector('.LW5').innerText);
+            const zeroArm = limpiarYConvertirNumero(document.querySelector('.zW5').innerText);
+            
         
+            // Datos para el gráfico de dispersión
             const newData = [
                 { x: takeoffArm, y: takeoffW, backgroundColor: 'orange', borderColor: 'orange', label: 'Total' },
                 { x: landingArm, y: landingW, backgroundColor: 'green', borderColor: 'green', label: 'Landing' },
                 { x: zeroArm, y: zeroW, backgroundColor: 'blue', borderColor: 'blue', label: 'Zero' }
             ];
         
+            // Puntos del polígono (zona límite)
             const polygonData = [
-                { x: 171.5, y: 2234 }, { x: 170, y: 2234 }, { x: 161.2, y: 2500 }, { x: 161.2, y: 3200 },
-                { x: 161.6, y: 3680 }, { x: 169.9, y: 3680 }, { x: 171.5, y: 2600 }, { x: 171.5, y: 2234 }
+                { x: -1.7, y: 2234 }, { x: -1.7, y: 2700 }, { x: -1.3, y: 3680 }, { x: 2.1, y: 3680 },
+                { x: 2.5, y: 3155 }, { x: 2.5, y: 2234 }, { x: -1.7, y: 2234 }
             ];
         
             const polygonExternalLoad = [
-                { x: 161.6, y: 3680 }, { x: 162.2, y: 4475 }, { x: 169, y: 4475 },
-                { x: 169.9, y: 3680 }, { x: 161.6, y: 3680 }
+                { x: -1.3, y: 3680 }, { x: -1.0, y: 4475 }, { x: 1.7, y: 4475 },
+                { x: 2.1, y: 3680 }, { x: -1.3, y: 3680 }
             ];
         
-            const polygonAftCG = [
-                { x: 171.5, y: 2234 }, { x: 170, y: 2234 }, { x: 168.4, y: 3680 }, { x: 168.1, y: 4475 },
-                { x: 169, y: 4475 }, { x: 169.9, y: 3680 }, { x: 171.5, y: 2600 }, { x: 171.5, y: 2234 }
-            ];
-        
+                   
             const data = {
                 datasets: [
                     {
@@ -267,17 +617,7 @@
                         tension: 0,
                         datalabels: { display: false }
                     },
-                    {
-                        data: polygonAftCG,
-                        backgroundColor: 'rgba(75, 75, 192, 0.9)',
-                        borderColor: 'rgba(75, 75, 192, 1)',
-                        borderWidth: 2,
-                        fill: true,
-                        pointRadius: 0,
-                        type: 'line',
-                        tension: 0,
-                        datalabels: { display: false }
-                    }
+                    
                 ]
             };
         
@@ -295,16 +635,16 @@
                         x: {
                             type: 'linear',
                             position: 'bottom',
-                            min: 158,
-                            max: 174,
+                            min: -5,
+                            max: 5,
                             title: { display: true, text: 'CG (inches)' }
                         },
                         x1: {
                             type: 'linear',
                             position: 'top',
-                            min: 4022,
-                            max: 4420,
-                            title: { display: true, text: 'CG (milimeters)' }
+                            min: -130,
+                            max: 130,
+                            title: { display: true, text: 'LATERAL' }
                         },
                         y: {
                             min: 2000,
@@ -326,7 +666,6 @@
                 if (!canvas) return chartVar;
         
                 const ctx = canvas.getContext('2d');
-                if (!ctx) return chartVar;
         
                 if (chartVar) {
                     chartVar.data.datasets[0].data = newData;
@@ -341,96 +680,89 @@
                 return chartVar;
             }
         
-            myChart1 = createOrUpdateChart('chartManifest', myChart1);
-            myChart2 = createOrUpdateChart('myChart', myChart2);
+            myChart2 = createOrUpdateChart('chartLateral', myChart2);
         }
         
-        // Ejecutar la función al cargar el DOM
-        document.addEventListener('DOMContentLoaded', grafic);
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(grafic2, 200);
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const botonImprimir = document.getElementById('btnImprimir');
+            
+            botonImprimir.addEventListener('click', function() {
+                window.print();
+            });
+        });
         
-
-     
-    // ------------------------
-    // 9. Agregar Event Listeners Adicionales
-    // ------------------------
-
-    function setupAdditionalEventListeners() {
-        // Actualizar porcentajes y stanks
-        document.getElementById('escala-fuel').addEventListener('input', () => {
-            updatePercentageFromRange('escala-fuel', 'percentageFuel', '#stank1');
-            calculateEndurance();
-            actualizarSuma();
-            actualizarSumaArm();
-            grafic();
+        </script>    
+        <script>
+            const canvas = document.getElementById('canvasSign');
+            const ctx = canvas.getContext('2d');
+            let dibujando = false;
+            let firmaGuardada = null; // Aquí podríamos guardar la firma si queremos
             
-        });
-
-        document.getElementById('escala-fuelLand').addEventListener('input', () => {
-            updatePercentageFromRange('escala-fuelLand', 'percentageFuelLand', '#stank2');
-            calculateReserve();
-            actualizarSuma();
-            actualizarSumaArm();
-            grafic();
+            // Ajustar tamaño real del canvas
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
             
-        });
-
-        // Consumir evento 'input' para el consumo
-        document.getElementById('consumption').addEventListener('input', () => {
-            calculateEndurance();
-            calculateReserve();
-            actualizarSuma();
-            actualizarSumaArm();
-            grafic();
+            // Dibujar
+            canvas.addEventListener('mousedown', empezarDibujo);
+            canvas.addEventListener('mouseup', terminarDibujo);
+            canvas.addEventListener('mousemove', dibujar);
             
-        });
-        // Calcular peso basado en Altitud y Temperatura
-    }
+            canvas.addEventListener('touchstart', empezarDibujo);
+            canvas.addEventListener('touchend', terminarDibujo);
+            canvas.addEventListener('touchmove', dibujar);
+            
+            function empezarDibujo(e) {
+              dibujando = true;
+              ctx.beginPath();
+              moverCursor(e);
+            }
+            
+            function terminarDibujo() {
+              dibujando = false;
+              guardarFirma(); // Cuando terminan de dibujar, guardamos la firma
+            }
+            
+            function dibujar(e) {
+              if (!dibujando) return;
+              e.preventDefault();
+              moverCursor(e, true);
+            }
+            
+            function moverCursor(e, dibujar = false) {
+              let x, y;
+              if (e.touches) {
+                x = e.touches[0].clientX - canvas.getBoundingClientRect().left;
+                y = e.touches[0].clientY - canvas.getBoundingClientRect().top;
+              } else {
+                x = e.clientX - canvas.getBoundingClientRect().left;
+                y = e.clientY - canvas.getBoundingClientRect().top;
+              }
+            
+              if (dibujar) {
+                ctx.lineTo(x, y);
+                ctx.stroke();
+              } else {
+                ctx.moveTo(x, y);
+              }
+            }
+            
+            function guardarFirma() {
+              firmaGuardada = canvas.toDataURL(); // Guardamos la firma en base64
+              console.log('Firma guardada:', firmaGuardada);
+            }
+            
+            function limpiarFirma() {
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
+              firmaGuardada = null; // Borrar también la firma guardada
+              console.log('Firma borrada');
+            }
+            </script>
+            
 
-    // ------------------------
-    // 10. Inicializar Funcionalidades
-    // ------------------------
-
-    function initialize() {
-        // Inicializar EventListeners
-        eventListenersConfig.forEach(config => {
-            setupEventListener(config.rangeId, config.spanId, config.inputClass);
-        });
-
-        setupAdditionalEventListeners();
-        actualizarSuma();
-        actualizarSumaArm();
-        grafic();        
-        calculateEndurance();
-        calculateReserve();
-        syncPilotFields()
-
-    }
-
-    // Ejecutar la inicialización
-    initialize();
-    
-    const params = new URLSearchParams(window.location.search);
-const fuel = params.get('fuel') || 0;
-const fuelLand = params.get('fuelLand') || 0;
-document.getElementById('takeoffw').textContent = fuel;
-document.getElementById('landingw').textContent = fuelLand;
-grafic();
-
-
-function esperarYGraficar() {
-    setTimeout(() => {
-        if (document.getElementById('chartManifest')) {
-            grafic();
-        }
-    }, 500);  // Espera medio segundo antes de ejecutar la función
-}
-
-document.addEventListener('DOMContentLoaded', esperarYGraficar);
-
-  
-        </script>
-
-   
-    
 </body>
 </html>
+
