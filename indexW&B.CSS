@@ -10,7 +10,6 @@ main {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto ; 
     background-color: black;
-    
     color: aliceblue;
 }
 
