@@ -774,7 +774,7 @@ input{
 .mainManifest{
     display: grid;
     grid-template-columns: repeat(14, 1fr);
-    grid-template-rows: repeat(43, 1fr);
+    grid-template-rows: repeat(26, 55px);
     background-color:white;
     border: solid 1px black;
     color: black;
@@ -860,7 +860,7 @@ input{
                                 }
     .title2LM{
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(8, 1fr);
         grid-template-rows: repeat(2, 1fr);
         grid-area: 5 / 2 / span 2 / span 12;
         border: solid 1px black;
@@ -869,22 +869,22 @@ input{
     }
 
                     .title2LM1{
-                        grid-area: 1 / 1 / span 1 / span 1;
+                        grid-area: 1 / 1 / span 1 / span 2;
                         background-color:white;
                         color: black;
                     }
                     .title2LM2{
-                        grid-area: 1 / 2 / span 1 / span 1;
+                        grid-area: 1 / 3 / span 1 / span 2;
                         background-color:white;
                         color:black;
                     }
                     .title2LM3{
-                        grid-area: 1 / 3 / span 1 / span 1;
+                        grid-area: 1 / 5 / span 1 / span 2;
                         background-color:white;
                         color: black;
                     }
                     .title2LM4{
-                        grid-area: 1 / 4 / span 1 / span 1;
+                        grid-area: 1 / 7/ span 1 / span 2;
                         background-color:white;
                         color:black;
                     }
@@ -924,7 +924,7 @@ input{
 
                     
                 .slrr1{
-                    grid-area: 2 / 1 / span 1 / span 1;
+                    grid-area: 2 / 1 / span 1 / span 3;
                                 border: solid 1px black;
                                 background-color:white;
                                 color:black;
@@ -932,7 +932,7 @@ input{
                                 justify-content: center;
                 }
                 .slrr2{
-                    grid-area: 2 / 2 / span 1 / span 1;
+                    grid-area: 2 / 4 / span 1 / span 2;
                                 border: solid 1px black;
                                 background-color:white;
                                 color:black;
@@ -941,7 +941,7 @@ input{
                                 
                 }
                 .slrr3{
-                    grid-area: 2 / 3 / span 1 / span 1;
+                    grid-area: 2 / 6 / span 1 / span 1;
                                 border: solid 1px black;
                                 background-color:white;
                                 color:black;
@@ -949,7 +949,7 @@ input{
                                 justify-content: center;
                 }
                 .slrr4{
-                    grid-area: 2 / 4 / span 1 / span 1;
+                    grid-area: 2 / 7 / span 1 / span 2;
                                 border: solid 1px black;
                                 background-color:white;
                                 color:black;
@@ -1135,6 +1135,7 @@ input{
                                         border: solid 2px blue;
                                         background-color:white;
                                         color:black;
+
                                         
                                     }
                 
@@ -1302,7 +1303,7 @@ input{
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(3, 1fr);
-        grid-area: 22 / 2 / span 3 / span 12;
+        grid-area: 21 / 2 / span 3 / span 12;
         border: solid 1px black;
         background-color:white;
         color:black;
@@ -1315,18 +1316,19 @@ input{
                 }
                 .signName{
                     grid-area: 1 / 2 / span 3 / span 1;
+                                display: flex;
+                                justify-content: center; 
+                                align-items: center;
                                 border: solid 1px black;
                                 background-color:white;
                                 color:black;
+                                text-transform: uppercase;
                 }
 
     .grafic1LM{
         
-        grid-area: 7 / 10 / span 7 / span 4;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 400px; /* Ajusta la altura según necesidad */
+        grid-area: 7 / 10 / span 5 / span 4;
+       /* Ajusta la altura según necesidad */
         background-color: white;
         border: 2px solid black;
         position: relative;
@@ -1344,11 +1346,23 @@ input{
             }
 
     .grafic2LM{
-        grid-area: 14 / 10 / span 2 / span 4;
+        grid-area: 12 / 10 / span 4 / span 4;
         border: solid 1px black;
         background-color:white;
         color:black;
     }
+
+
+            #chartLateral {
+                justify-content: center; 
+                align-items: center;
+                height: 99%;
+                width: 99%;
+                background-color: white;
+                display: block !important;
+                opacity: 1 !important;
+
+            }
     .manifest{
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -1357,6 +1371,7 @@ input{
         border: solid 1px black;
         background-color:white;
         color:black;
+        text-transform: uppercase;
         
     }
 
@@ -1425,21 +1440,16 @@ input{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: 1fr;
-        grid-area: 26 / 2 / span 2 / span 12;
+        grid-area: 24 / 2 / span 2 / span 12;
         background-color:white;
         color:black;
     }
 
    
-                .slrrrr1{
-                    border: solid 1px black;
-                    background-color:white;
-                    color:black;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
+               
                 .slrrrr2{
+                   
+                    grid-area: 1 / 1 / span 1 / span 1;
                     border: solid 1px black;
                     background-color:white;
                     color:black;
@@ -1448,6 +1458,7 @@ input{
                     justify-content: center;
                 }
                 .slrrrr3{
+                    grid-area: 1 / 3 / span 1 / span 1;
                     border: solid 1px black;
                     background-color:white;
                     color:black;
@@ -1456,6 +1467,69 @@ input{
                     justify-content: center;
                 }
 
-
+             /* formato para imprimir */   
+             @media print {
+                /* Ajusta el tamaño de todo */
+                body {
+                    zoom: 80%; /* Puedes ajustar 80%, 70%, etc. hasta que todo quepa */
+                    margin: 0;
+                    padding: 0;
+                }
+            
+                /* Quitar márgenes de impresión que pone el navegador */
+                @page {
+                    size: A4 portrait;
+                    margin: 0mm; /* o puedes poner 0 si quieres más contenido */
+                }
+            
+                /* Opcional: Forzar todo el main a no partirse entre páginas */
+                main, .mainManifest {
+                    page-break-inside: avoid;
+                    break-inside: avoid;
+                }
+            
+                /* Quitar elementos que no quieres imprimir */
+                .salir, .butoons {
+                    display: none;
+                }
+            
+                /* Si quieres que el canvas (gráficos) sea más pequeño al imprimir */
+                canvas {
+                    max-width: 100%;
+                    height: auto;
+                }
+            }
+            
                 
+                
+                
+ /* CUADRO DE FIRMA */               
 
+ 
+  #canvasSign {
+    width: 100%;
+    touch-action: none; /* Permitir dibujo táctil */
+    background-color: white;
+    border: none;
+  }
+  
+
+  .sign {
+    width: 100%;
+    border: 1px solid whitesmoke;
+    display: flex; /* Hacemos flexbox el contenedor */
+    align-items: center; /* Centramos verticalmente */
+    justify-content: center; /* Centramos horizontalmente */
+    background-color: white; /* Fondo blanco si quieres */
+    margin:auto;
+    border: none;
+  }
+  
+.btoon2.slrrrr2 {
+ 
+  background-color: red;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  width: 300px;
+}
