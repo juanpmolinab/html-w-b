@@ -295,8 +295,10 @@ document.addEventListener("DOMContentLoaded", function() {
     
         document.getElementById('landingw').innerText = landingw;
         document.getElementById('zerow').innerText = zerow;
-       
+        
     }
+    
+    
     
     
     function actualizarSumaArm() {
@@ -425,7 +427,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     
     let myChart1;
-    let myChart2;
+    
     
     function grafic() {
         // Obtener valores para el gráfico
@@ -573,8 +575,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     
         // Crear o actualizar gráficos en ambos canvas
-        myChart1 = createOrUpdateChart('chartManifest', myChart1);
-        myChart2 = createOrUpdateChart('myChart', myChart2);
+        myChart1 = createOrUpdateChart('myChart', myChart1);
+        
     }
     
     // Llamar a la función después de que el DOM haya cargado
@@ -590,6 +592,149 @@ document.addEventListener("DOMContentLoaded", function() {
 
 document.addEventListener('DOMContentLoaded', esperarYGraficar);
 
+
+let myChart2;
+
+        function crearGraficoManifest() {
+            const takeoffW = parseFloat(document.getElementById('takeoffw')?.textContent) || 0;
+            const landingW = parseFloat(document.getElementById('landingw')?.textContent) || 0;
+            const zeroW = parseFloat(document.getElementById('zerow')?.textContent) || 0;
+        
+            const takeoffArm = parseFloat(document.getElementById('takeoffArm')?.textContent) || 0;
+            const landingArm = parseFloat(document.getElementById('landingArm')?.textContent) || 0;
+            const zeroArm = parseFloat(document.getElementById('zeroArm')?.textContent) || 0;
+        
+            const newData = [
+                { x: takeoffArm, y: takeoffW, backgroundColor: 'orange', borderColor: 'orange', label: 'Takeoff' },
+                { x: landingArm, y: landingW, backgroundColor: 'green', borderColor: 'green', label: 'Landing' },
+                { x: zeroArm, y: zeroW, backgroundColor: 'blue', borderColor: 'blue', label: 'Zero Fuel' }
+            ];
+        
+            const polygonData = [
+                { x: 171.5, y: 2234 }, { x: 170, y: 2234 }, { x: 161.2, y: 2500 },
+                { x: 161.2, y: 3200 }, { x: 161.6, y: 3680 }, { x: 169.9, y: 3680 },
+                { x: 171.5, y: 2600 }, { x: 171.5, y: 2234 }
+            ];
+        
+            const polygonExternalLoad = [
+                { x: 161.6, y: 3680 }, { x: 162.2, y: 4475 }, { x: 169, y: 4475 },
+                { x: 169.9, y: 3680 }, { x: 161.6, y: 3680 }
+            ];
+        
+            const polygonAftCG = [
+                { x: 171.5, y: 2234 }, { x: 170, y: 2234 }, { x: 168.4, y: 3680 },
+                { x: 168.1, y: 4475 }, { x: 169, y: 4475 }, { x: 169.9, y: 3680 },
+                { x: 171.5, y: 2600 }, { x: 171.5, y: 2234 }
+            ];
+        
+            const data = {
+                datasets: [
+                    {
+                        label: 'Max Weight',
+                        data: newData,
+                        backgroundColor: newData.map(p => p.backgroundColor),
+                        borderColor: newData.map(p => p.borderColor),
+                        borderWidth: 1,
+                        pointRadius: 5,
+                        datalabels: {
+                            color: 'grey',
+                            display: true,
+                            formatter: v => v.label
+                        }
+                    },
+                    {
+                        data: polygonData,
+                        backgroundColor: 'rgba(192, 75, 75, 0.2)',
+                        borderColor: 'rgba(192, 75, 75, 1)',
+                        borderWidth: 2,
+                        fill: true,
+                        pointRadius: 0,
+                        type: 'line',
+                        tension: 0
+                    },
+                    {
+                        data: polygonExternalLoad,
+                        backgroundColor: 'rgba(75, 75, 192, 0.2)',
+                        borderColor: 'grey',
+                        borderWidth: 2,
+                        fill: true,
+                        pointRadius: 0,
+                        type: 'line',
+                        tension: 0
+                    },
+                    {
+                        data: polygonAftCG,
+                        backgroundColor: 'rgba(75, 75, 192, 0.9)',
+                        borderColor: 'rgba(75, 75, 192, 1)',
+                        borderWidth: 2,
+                        fill: true,
+                        pointRadius: 0,
+                        type: 'line',
+                        tension: 0
+                    }
+                ]
+            };
+        
+            const config = {
+                type: 'scatter',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        datalabels: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom',
+                            min: 158,
+                            max: 174,
+                            title: { display: true, text: 'CG (inches)' }
+                        },
+                        x1: {
+                            type: 'linear',
+                            position: 'top',
+                            min: 4022,
+                            max: 4420,
+                            title: { display: true, text: 'CG (millimeters)' }
+                        },
+                        y: {
+                            min: 2000,
+                            max: 4800,
+                            title: { display: true, text: 'Weight (lbs)' }
+                        },
+                        y1: {
+                            position: 'right',
+                            min: 910,
+                            max: 2175,
+                            title: { display: true, text: 'Weight (kg)' }
+                        }
+                    }
+                }
+            };
+        
+            const canvas = document.getElementById('chartManifest');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                if (myChart2) {
+                    myChart2.destroy();
+                }
+                myChart2 = new Chart(ctx, config);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            crearGraficoManifest();
+
+           
+            
+        });
+ document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(crearGraficoManifest, 200);  // espera 200ms
+            });
+
     // ------------------------
     // 9. Agregar Event Listeners Adicionales
     // ------------------------
@@ -602,7 +747,7 @@ document.addEventListener('DOMContentLoaded', esperarYGraficar);
             actualizarSuma();
             actualizarSumaArm();
             grafic();
-            
+            crearGraficoManifest();
         });
 
         document.getElementById('escala-fuelLand').addEventListener('input', () => {
@@ -610,7 +755,8 @@ document.addEventListener('DOMContentLoaded', esperarYGraficar);
             calculateReserve();
             actualizarSuma();
             actualizarSumaArm();
-            grafic();
+            grafic(); 
+            crearGraficoManifest();
             
         });
 
@@ -621,6 +767,7 @@ document.addEventListener('DOMContentLoaded', esperarYGraficar);
             actualizarSuma();
             actualizarSumaArm();
             grafic();
+            crearGraficoManifest();
             
         });
         // Calcular peso basado en Altitud y Temperatura
@@ -640,7 +787,7 @@ document.addEventListener('DOMContentLoaded', esperarYGraficar);
         actualizarSuma();
         actualizarSumaArm();
         grafic();
-        
+        crearGraficoManifest();        
         calculateEndurance();
         calculateReserve();
         syncPilotFields()
@@ -934,10 +1081,19 @@ document.addEventListener('DOMContentLoaded', () => {
     configManager.restaurarValores();
 });
 
+// ME COLOCA EL NOMBRE DEL HELICOPTERO EN LA CASIYA DE REGISTRO DEL MANIFIESTO
+
+function guardarSeleccionHelicopter() {
+    const select = document.getElementById('optionsHelicopter');
+    const selectedText = select.options[select.selectedIndex].text;
+    localStorage.setItem('optionsHelicopterValue', selectedText);
+}
+
+
 // 🔹 Función para transferir valores de `localStorage` a `manifest.html`
 function transferirValores1() {
     const configuraciones = [
-        { key: 'opHeli', selector: 'regist1' },
+        { key: 'optionsHelicopterValue', selector: '.regist1' },
         { key: 'fromValue', selector: '.from1' },
         { key: 'toValue', selector: '.to1' },
         { key: 'AltValue', selector: '.paramA_2' },
@@ -948,7 +1104,8 @@ function transferirValores1() {
         { key: 'F1Value', selector: '.man2' },
         { key: 'RLValue', selector: '.man3' },
         { key: 'CCValue', selector: '.man4' },
-        { key: 'RValue', selector: '.man5' }
+        { key: 'RValue', selector: '.man5' },
+        { key: 'pilotValue', selector: '.signName' }
     ];
 
     configuraciones.forEach(config => {
@@ -1180,7 +1337,7 @@ const abaco = {
       cargarValoresGuardadosAbacoOge();
         // Datos de ejemplo del ábaco (simplificados)
       // esta en veremos para seleccionar el peso 
-
+/*
 
 function saveHelicopterSelection() {
     var selectedValue = document.getElementById('optionsHelicopter').value;
@@ -1195,9 +1352,9 @@ function saveHelicopterSelection() {
         localStorage.setItem('helicopterWeight', weightValue);
     }
 }
+/*
 
-
-// Función para mostrar el valor en manifest.html
+// Función para mostrar el valor del helicoptero seleccionado en manifest.html
 function displayWeightInManifest() {
     var selectedHelicopter = localStorage.getItem('selectedHelicopter');
     var weightValue = localStorage.getItem('helicopterWeight');
@@ -1233,7 +1390,9 @@ function initializePage() {
         displayWeightInManifest();
     }
 }
-// Función para sumar los valores de los pesos para zero max y landing 
+
+*/
+
 function sumarPesoZFW() {
     const clases = ["blanco2", "p2", "cp2", "l2", "c2", "r2", "cargo2", "hook2"];
     let suma = 0;
@@ -1247,6 +1406,7 @@ function sumarPesoZFW() {
         }
     });
 
+    
     // Obtener el valor de .mF2.slr2
     let valorExtraElemento = document.querySelector(".mF2");
     let valorExtra = valorExtraElemento ? parseFloat(valorExtraElemento.textContent.trim()) || 0 : 0;
@@ -1306,78 +1466,7 @@ function cargarValoresDeslizadores() {
 }
 
 
-// Función para sumar los valores de los momentos para zero max y landing
-function sumarMomentosZFW() {
-    const clases = ["blanco4", "p4", "cp4", "l4", "c4", "r4", "cargo4", "hook4"];
-    let suma = 0;
 
-    // Sumar los valores de las clases especificadas
-    clases.forEach(clase => {
-        let elemento = document.querySelector("." + clase);
-        if (elemento) {
-            let valor = parseFloat(elemento.textContent.trim()) || 0;
-            suma += valor;
-        }
-    });
-
-    // Obtener el valor de .mF2.slr2
-    let valorExtraElemento = document.querySelector(".mF4");
-    let valorExtra = valorExtraElemento ? parseFloat(valorExtraElemento.textContent.trim()) || 0 : 0;
-
-    // Calcular suma2
-    let suma2 = suma + valorExtra;
-
-    let valorExtraElemento2 = document.querySelector(".lF4");
-    let valorExtra2 = valorExtraElemento2 ? parseFloat(valorExtraElemento2.textContent.trim()) || 0 : 0;
-
-    let suma3 = suma + valorExtra2;
-
-    // Mostrar el resultado en .zW2
-    let resultadoElemento = document.querySelector(".zW4");
-    if (resultadoElemento) {
-        resultadoElemento.textContent = suma.toFixed(1);
-    }
-
-    // Mostrar el resultado en .TW2.slr2
-    let resultadoSuma2Elemento = document.querySelector(".TW4");
-    if (resultadoSuma2Elemento) {
-        resultadoSuma2Elemento.textContent = suma2.toFixed(1);
-    }
-
-    let resultadoSuma3Elemento = document.querySelector(".LW4");
-    if (resultadoSuma3Elemento) {
-        resultadoSuma3Elemento.textContent = suma3.toFixed(1);
-    }
-}
-
-
-// Función para cargar y mostrar los valores
-function cargarValoresDeslizadores2() {
-    const configuraciones = [
-        { key: 'selectedWeight', selector: '.blanco2' },
-        { key: 'paxValue', selector: '.p2' },
-        { key: 'sfValue', selector: '.cp2' },
-        { key: 'srlValue', selector: '.l2' },
-        { key: 'srcValue', selector: '.c2' },
-        { key: 'srrValue', selector: '.r2' },
-        { key: 'gValue', selector: '.cargo2' },
-        { key: 'fuelValue', selector: '.mF2' },
-        { key: 'fuelLandValue', selector: '.lF2' }
-    ];
-
-    configuraciones.forEach(config => {
-        const destinoDiv = document.querySelector(config.selector);
-        const valorGuardado = localStorage.getItem(config.key);
-
-        if (destinoDiv && valorGuardado !== null) {
-            destinoDiv.textContent = valorGuardado;
-        }
-    });
-
-    // ✅ Llamamos a sumarPesoZFW() después de asignar todos los valores
-    sumarPesoZFW();
-    sumarMomentosZFW();
-}
 
 
 // Llamar a initializePage cuando la página se carga
@@ -1386,3 +1475,5 @@ window.onload = function() {
 };
 
 window.location.href = `manifest.html?fuel=${valueFuel}&fuelLand=${valueFuelLand}`;
+
+
